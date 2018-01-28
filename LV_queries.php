@@ -413,6 +413,77 @@ function getItem_quantity()
 }
 
 
+function get_user()
+{
+  global $conn;
+  $xQx = "SELECT * ";
+  $xQx .= "FROM useraccount ";
+  $xQx .= "ORDER BY isActive DESC ";
+  $query=mysqli_query($conn,$xQx);
+
+  return  $query;
+
+}
+
+
+function addAccount($a,$b,$c,$d)
+{
+    global $conn;
+    $xQx = "INSERT INTO useraccount(";
+    $xQx .= "user_name,";
+    $xQx .= "user_password,";
+    $xQx .= "accessright,";
+    $xQx .= "isActive) ";
+    $xQx .=" VALUES (";
+    $xQx .=" '$a','$b','$c','$d') ";
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+}
+
+function editAccount($a,$b,$c,$d)
+{
+    global $conn;
+    $xQx = "UPDATE  useraccount SET ";
+    $xQx .= "user_name='$a',";
+    $xQx .= "user_password='$b',";
+    $xQx .= "accessright='$c'";
+   $xQx .=  "WHERE user_id='$d' ";
+
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+}
+
+function geteditAccount($a)
+{
+    global $conn;
+  $xQx = "SELECT * ";
+  $xQx .= "FROM useraccount ";
+  $xQx .= "WHERE user_id = '$a'";
+  $query=mysqli_query($conn,$xQx);
+
+  return  $query;
+}
+
+function delAccount($a)
+{
+     global $conn;
+    $xQx = "UPDATE  useraccount SET ";
+    $xQx .= "isActive='0' ";
+   $xQx .=  "WHERE user_id='$a' ";
+
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+}
+function resAccount($a)
+{
+     global $conn;
+    $xQx = "UPDATE  useraccount SET ";
+    $xQx .= "isActive='1' ";
+   $xQx .=  "WHERE user_id='$a' ";
+
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+}
 
 
 ?>

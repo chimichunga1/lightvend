@@ -1,5 +1,152 @@
 
+<?php
+
+
+
+function frm_add_account()
+{
+?>
+<div class="divider"></div>
+
+  <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Username</button>
+                  </div>
+                  <input type="text" class="form-control"  name="user1"  required>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Password</button>
+                  </div>
+                  <input type="text" class="form-control"  name="user2"  required>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Accessright</button>
+                  </div>
+                
+              <select name="user3"  class="form-control" required>
+                 <option value="1" Selected>Administrator</option>
+                 <option value="2" >Employee</option>
+            
+              
+              </select>
+      </div>
+    </div>
+
+  </div>
+ 
+
+
+
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addAccount">Submit</button>
+  </form>  
+
+  <br>
+  <br>
+  <div class="divider"></div>
+
 <?php 
+}
+
+?>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<?php
+function frm_edit_account()
+{
+?>
+<div class="divider"></div>
+<?php
+$xQx=geteditAccount($_SESSION['account']);
+$row=mysqli_fetch_array($xQx);
+?>
+
+  <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
+     <input type="text" class="form-control"  name="user0"  value="<?php echo $row[0]; ?>" style="display: none;" required>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Username</button>
+                  </div>
+                  <input type="text" class="form-control"  name="user1"  value="<?php echo $row[1]; ?>" required>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Password</button>
+                  </div>
+                  <input type="text" class="form-control"  name="user2"  value="<?php echo decryptIt($row[2]);?>" required>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Accessright</button>
+                  </div>
+                
+              <select name="user3"  class="form-control" required>
+                <?php 
+
+                if ($row[3]=='1')
+                {
+                 echo '<option value="1"  Selected>Administrator</option>
+                  <option value="2" >Employee</option>';
+                }
+                else
+                {
+                   echo '<option value="1"  >Administrator</option>
+                  <option value="2" Selected>Employee</option>';
+                }
+                
+
+                ?>
+            
+            
+              
+              </select>
+      </div>
+    </div>
+
+  </div>
+ 
+
+
+
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="editAccount">Submit</button>
+  </form>  
+
+  <br>
+  <br>
+  <div class="divider"></div>
+
+<?php 
+}
+?>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<?php 
+
+
 
 
 function frm_add_supplier()

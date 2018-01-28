@@ -1,6 +1,7 @@
 <?php 
 include('LV_queries.php'); 
 include('connect.config.php');
+include('support/function.php');
 session_start();
 
 
@@ -22,6 +23,71 @@ if (isset($_POST['addSuppliers']))
     </script>
 <?php
 }
+
+
+
+
+
+if (isset($_POST['addAccount']))
+{
+//-----------------------------------------------
+ 
+    
+        addAccount($_POST['user1'],encryptIt($_POST['user2']),$_POST['user3'],'1');
+    
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=ACCOUNTS";
+    </script>
+<?php
+}
+
+if (isset($_POST['editAccount']))
+{
+//-----------------------------------------------
+ 
+    
+        editAccount($_POST['user1'],encryptIt($_POST['user2']),$_POST['user3'],$_POST['user0']);
+    
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=ACCOUNTS";
+    </script>
+<?php
+}
+
+if (isset($_POST['delAccount']))
+{
+//-----------------------------------------------
+ 
+    
+        delAccount($_POST['delId']);
+    
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=ACCOUNTS";
+    </script>
+<?php
+}
+if (isset($_POST['resAccount']))
+{
+//-----------------------------------------------
+ 
+    resAccount($_POST['resId']);
+
+    
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=ACCOUNTS";
+    </script>
+<?php
+}
+
+
 
 if (isset($_POST['addInvoice']))
 {

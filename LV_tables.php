@@ -1177,7 +1177,285 @@ $_SESSION['editclientid']=$row[0];
 } 
 
 
+?>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->
 
+<?php
+
+function tbl_accounts()
+{
+  ?>
+<!--   <table id="ManageClients" class="display" cellspacing="0" width="100%"> -->
+  <table id="accounts" class="ui celled table" cellspacing="0" width="100%">
+          <thead>
+              <tr>
+                  <th>UID</th>
+                  <th>Username</th>
+             
+                  <th>Accessright</th>
+                  <th>isActive</th>
+                  <th>Action</th>
+
+            
+              </tr>
+          </thead>
+          <tbody>
+            <?php  
+
+
+        $xQx=get_user();
+
+          while($row=mysqli_fetch_array($xQx))
+            {
+
+
+               if($row[3]==1)
+                  {
+                    $namesss='Administrator';
+                  }
+                  else
+                  {
+                     $namesss='Employee';
+                  }
+                
+
+
+              $SeeModal="SeeModal".$row[0];
+              $EditModal="EditModal".$row[0];
+              $DeleteModal="DeleteModal".$row[0];
+              $RestoreModal="RestoreModal".$row[0];
+              echo" 
+              <tr>
+                <td>$row[0]</td>
+              <td>$row[1]</td>
+
+
+              <td>$namesss</td> 
+
+              <td>$row[4]</td> 
+                       
+                       
+              <td>
+              <div class='row'>
+              <div class='col-md-4'>
+              ";
+              ?>
+            <?php
+            echo '
+            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#'.$SeeModal.'"><i class="fa fa-eye"></i></button></center>
+            ';
+            ?>
+            <?php
+              echo "
+              </div>
+              <div class='col-md-4'>
+              ";
+              ?>
+            <?php
+            echo '
+            <button type="button" class="btn btn-block btn-warning btn-flat" data-toggle="modal" data-target="#'.$EditModal.'"><i class="fa fa-edit"></i></button></center>
+            ';
+            ?>
+            <?php
+              echo "
+              </div>";
+if($row[4]==1)
+  {
+
+    echo"
+              <div class='col-md-4'>";
+            echo '
+            <button type="button" class="btn btn-block btn-danger btn-flat" data-toggle="modal" data-target="#'.$DeleteModal.'"><i class="fa fa-remove"></i></button></center>
+            ';
+              echo "
+              </div>";
+    }
+
+else
+{
+   echo"
+              <div class='col-md-4'>";
+            echo '
+            <button type="button" class="btn btn-block btn-success btn-flat" data-toggle="modal" data-target="#'.$RestoreModal.'"><i class="fa fa-check"></i></button></center>
+            ';
+              echo "
+              </div>";
+
+}
+              echo"
+
+
+              </div>
+              </td>
+              </tr>";
+
+  echo "   
+  <div id='".$SeeModal."' class='modal fade'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+          <h4 class='modal-title'>INFORMATION </h4>
+        </div>
+        <div class='modal-body'>
+              <div class='row'>
+              ";
+         
+
+              $tag=array('','Username','Password','Accessright');
+
+              for ($i=1; $i <=3 ; $i++) { 
+
+
+
+                if ($i==2)
+                {
+                   echo "
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>".$tag[$i]."</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='". decryptIt($row[$i]) ."'>
+                  </div>
+              ";
+                }
+                elseif ($i==3)
+                {
+
+                  if($row[$i]==1)
+                  {
+                    $namesss='Administrator';
+                  }
+                  else
+                  {
+                     $namesss='Employee';
+                  }
+
+
+                   echo "
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>".$tag[$i]."</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$namesss ."'>
+                  </div>
+              ";
+                }
+                else
+                {
+                  echo "
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>".$tag[$i]."</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[$i]."'>
+                  </div>
+              ";
+            }
+              }
+            
+
+              echo "      
+              
+              </div>
+        </div>
+        <div class='modal-footer'>
+        <button type='button' class='btn btn-primary' data-dismiss='modal'>OK</button>
+                        
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>";
+
+  echo "   
+  <div id='".$EditModal."' class='modal fade'>
+    <div class='modal-dialog modal-lg '>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+          <h4 class='modal-title'>INFORMATION </h4>
+        </div>
+        <div class='modal-body'>
+  ";
+
+ 
+
+$_SESSION['account']=$row[0];
+
+  frm_edit_account();
+
+  echo "
+        
+        </div>
+      </div>
+    </div>
+  </div>";
+
+if($row[4]==1)
+{
+  echo "   
+  <div id='".$DeleteModal."' class='modal fade'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+          <h4 class='modal-title'>INFORMATION </h4>
+        </div>
+        <div class='modal-body'>
+          <form  role='form' action='LV_submit.php' method='post' id='partdelpost' enctype='multipart/form-data'>
+          <div class='form-group'>
+            <input type='text' class='form-control' id='delId' name='delId'  style='opacity:0;' value='".$row[0]."'>
+            <label ><center>Are you sure you want to disable '".$row[1]."' ?</center></label>
+          </div>
+        </div>
+        <div class='modal-footer'>
+                          <button type='submit' name='delAccount'  class='btn btn-success'>Yes</button>
+                          <button type='button' class='btn btn-danger' data-dismiss='modal'>No</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>";   
+}
+else
+{
+    echo "   
+  <div id='".$RestoreModal."' class='modal fade'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+          <h4 class='modal-title'>INFORMATION </h4>
+        </div>
+        <div class='modal-body'>
+          <form  role='form' action='LV_submit.php' method='post' id='partdelpost' enctype='multipart/form-data'>
+          <div class='form-group'>
+            <input type='text' class='form-control' id='resId' name='resId'  style='opacity:0;' value='".$row[0]."'>
+            <label ><center>Are you sure you want to restore '".$row[1]."' ?</center></label>
+          </div>
+        </div>
+        <div class='modal-footer'>
+                          <button type='submit' name='resAccount'  class='btn btn-success'>Yes</button>
+                          <button type='button' class='btn btn-danger' data-dismiss='modal'>No</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>";   
+}
+
+
+            }
+            ?>
+            
+          
+            </tbody>
+          </table>
+  <?php 
+} 
 
 ?>
 

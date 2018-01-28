@@ -1,32 +1,63 @@
 <?php 
 include('connect.config.php');
+include('support/function.php');
 session_start();
 
 if(isset($_POST["Login"]))
 {
-$username = $_POST["name"];
-$password = $_POST["pass"];
+$username = $_POST["user"];
+$password = encryptIt($_POST["pass"]);
 
-$row=mysqli_query($conn,'SELECT * From `account_tbl` WHERE `username`="'.$_POST["username"].'" AND `password`="'.$_POST["password"].'" ');
-$search= mysqli_fetch_assoc($row);
+$row=mysqli_query($conn,'SELECT * From `useraccount` WHERE `user_name`="'.$username.'" AND `user_password`="'.$password.'" and isActive="1" ');
+$search=mysqli_fetch_assoc($row);
 
   $_SESSION['fn']=$search['user_name'];
   $_SESSION["u_id"] = $search["user_id"];
 
+  $_SESSION["access"] = $search["accessright"];
+
   if (!empty($search) && ($search['accessright']==1))
+  {
+
+
+?> 
+
+
+<script>
+
+window.location.href="admin.php";
+
+</script>
+
+<?php
+  }
+   elseif (!empty($search) && ($search['accessright']==2))
   {
 
 ?> 
 
 
 <script>
-{
-    alert("Reservation was successful!");
-}
+
+window.location.href="admin.php";
 
 </script>
 
 <?php
+  }
+
+
+  else
+  {
+  	?>
+
+  	<script>
+
+window.location.href="admin_login.php";
+
+</script>
+  	<?php
+
   }
 
 }

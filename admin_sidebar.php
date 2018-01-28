@@ -23,12 +23,12 @@
     background-repeat: no-repeat;height:30px;width:30px;"  class="img-circle" alt="User Image">
  
 
-          <center ><b><p style="font-size:20px;color:#b8c7ce;"><?php echo substr('User',0,1); ?></p></b></center>
+          <center ><b><p style="font-size:20px;color:#b8c7ce;"><?php echo substr($_SESSION['fn'],0,1); ?></p></b></center>
           </div>
         </div>
         <div class="pull-left info" style="left:30px;">
     
-          <p style="font-size:20px;"><?php echo substr('User',1); ?></p>
+          <p style="font-size:20px;"><?php echo substr($_SESSION['fn'],1); ?></p>
           <!-- Status -->
          
         </div>
@@ -78,7 +78,7 @@
           else
           {
             $y="?x=".$sidebar_label[$i];
-           echo'  <li><a href="'. $y .'" style="opacity:0;"><i class="'.$sidebar_icon[$i].'"></i> <span> '. $sidebar_label[$i] .' </span></a></li>';
+           echo'  <li><a href="'. $y .'" style="display:none;"><i class="'.$sidebar_icon[$i].'"></i> <span> '. $sidebar_label[$i] .' </span></a></li>';
           }
    }
    ?>
