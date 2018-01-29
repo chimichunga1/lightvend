@@ -928,7 +928,7 @@ function frm_add_client()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Mobile No.</button>
                   </div>
-                  <input type="email" class="form-control"  name="Client_g"  >
+                  <input type="text" class="form-control"  name="Client_g"  >
       </div>
     </div>
     <div class="col-md-4">
@@ -936,7 +936,7 @@ function frm_add_client()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Fax No.</button>
                   </div>
-                  <input type="email" class="form-control"  name="Client_f"  >
+                  <input type="text" class="form-control"  name="Client_f"  >
       </div>
     </div>
   </div>

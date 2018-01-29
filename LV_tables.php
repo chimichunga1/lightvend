@@ -1031,7 +1031,19 @@ function tbl_client()
             <?php  
 
 
-        $xQx=getClient();
+ global $conn;
+  $xQx = "SELECT clientId,";
+  $xQx .=  "clientName,";
+  $xQx .=  "contactPerson,";
+  $xQx .=  "telno,";
+  $xQx .=  "mobileno,";
+  $xQx .=  "faxno,";
+  $xQx .=  "email ";
+  $xQx .=  "FROM clients ";
+  $xQx .=  "WHERE isDeleted = 0 ";
+  $query=mysqli_query($conn,$xQx);
+$xQx= $query;
+       /* $xQx=getClient();*/
 
           while($row=mysqli_fetch_array($xQx))
             {
@@ -1134,7 +1146,7 @@ function tbl_client()
  
 
 $_SESSION['editclientid']=$row[0];
-  frm_edit_client();
+  frm_edit_client_a();
 
   echo "
         
