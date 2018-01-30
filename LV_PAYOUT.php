@@ -351,8 +351,6 @@ Terms and Conditions Here.
 <th style="width:50%"></th>
 <th><?php echo $row["sellPrice"] * $row["quantity"]; 
 
-$_SESSION["total_price"] +=  $row["sellPrice"] * $row["quantity"];
-
 
 
 
