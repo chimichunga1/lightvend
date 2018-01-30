@@ -759,7 +759,7 @@ global $conn;
         <div class='modal-body'>
           <form  role='form' action='print_report.php' method='post' id='partdelpost' enctype='multipart/form-data'>
           <div class='form-group'>
-            <input type='text' class='form-control' id='SupId' name='catch_invoiceId'  style='opacity:0;' value='".$row[1]."'>
+            <input type='text' class='form-control' id='SupId' name='invoiceId'  style='opacity:0;' value='".$row[1]."'>
             <label ><center>Would you like to print Report # '".$row[0]."' ?</center></label>
           </div>
         </div>
