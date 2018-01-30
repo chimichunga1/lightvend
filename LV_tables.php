@@ -593,25 +593,40 @@ function tbl_reports()
   <table id="ManageStocks" class="ui celled table" cellspacing="0" width="100%">
           <thead>
               <tr>
-                  <th>GroupName</th>
+                  <th>Report ID</th>
+                  <th>Client Name</th>
+                  <th>Business Type</th>
+                  <th>Total Amount</th>
+                  <th>Amount Paid</th>
+                  <th>Handled By</th>
                   <th>Actions</th>
 
               </tr>
           </thead>
           <tbody>
             <?php  
+global $conn;
+  $xQx_select = "SELECT * FROM  reportsclientorder";
+  $query_select=mysqli_query($conn,$xQx_select);         
 
 
-        $xQx=getGroup();
+       while($row=mysqli_fetch_array($query_select))
 
-          while($row=mysqli_fetch_array($xQx))
-            {
+{
+
+
 /*              $SeeModal="SeeModal".$row[0];*/
               $EditModal="EditModal".$row[0];
               $DeleteModal="DeleteModal".$row[0];
+              $PrintModal = "PrintModal".$row[0];     
               echo" 
               <tr>
-              <td>$row[1]</td>
+              <td>$row[0]</td>
+              <td>$row[4]</td>
+              <td>$row[6]</td>
+              <td>$row[7]</td>              
+              <td>$row[8]</td>
+              <td>$row[9]</td>
 <td>
                           
               <div class='row'>
@@ -631,7 +646,7 @@ function tbl_reports()
               ?>
             <?php
             echo '
-            <button type="button" class="btn btn-block btn-warning btn-flat" data-toggle="modal" data-target="#'.$EditModal.'"><i class="fa fa-edit"></i></button></center>
+            <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#'.$PrintModal.'"><i class="fa fa-print"></i></button></center>
             ';
             ?>
             <?php
@@ -722,7 +737,7 @@ function tbl_reports()
           <form  role='form' action='LV_submit.php' method='post' id='partdelpost' enctype='multipart/form-data'>
           <div class='form-group'>
             <input type='text' class='form-control' id='SupId' name='supId'  style='opacity:0;' value='".$row[0]."'>
-            <label ><center>Are you sure you want to delete '".$row[1]."' ?</center></label>
+            <label ><center>Are you sure you want to delete '".$row[0]."' ?</center></label>
           </div>
         </div>
         <div class='modal-footer'>
@@ -732,7 +747,31 @@ function tbl_reports()
         </div>
       </div>
     </div>
-  </div>";      
+  </div>"; 
+  echo "   
+  <div id='".$PrintModal."' class='modal fade'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+          <h4 class='modal-title'>INFORMATION </h4>
+        </div>
+        <div class='modal-body'>
+          <form  role='form' action='print_report.php' method='post' id='partdelpost' enctype='multipart/form-data'>
+          <div class='form-group'>
+            <input type='text' class='form-control' id='SupId' name='catch_invoiceId'  style='opacity:0;' value='".$row[1]."'>
+            <label ><center>Would you like to print Report # '".$row[0]."' ?</center></label>
+          </div>
+        </div>
+        <div class='modal-footer'>
+                          <button type='submit' name='delSupplier'  class='btn btn-success'>Yes</button>
+                          <button type='button' class='btn btn-danger' data-dismiss='modal'>No</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>";  
+
             }
             ?>
             
