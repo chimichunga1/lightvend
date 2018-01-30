@@ -339,7 +339,11 @@ Terms and Conditions Here.
 
 
 
-  <?php  $xQx_sellprice = "SELECT * FROM items_ordered WHERE invoiceId = $invoice_id AND isDeleted = '0'";
+  <?php 
+$sp="";
+
+
+   $xQx_sellprice = "SELECT * FROM items_ordered WHERE invoiceId = $invoice_id AND isDeleted = '0'";
   $query_sellprice=mysqli_query($conn,$xQx_sellprice);         
 
 
@@ -350,6 +354,9 @@ Terms and Conditions Here.
  <tr>                       
 <th style="width:50%"></th>
 <th><?php echo $row["sellPrice"] * $row["quantity"]; 
+
+
+$sp[].=$row["sellPrice"]* $row["quantity"];
 
 
 
@@ -391,26 +398,17 @@ else
                 <th>Total:</th>
 
 
-  <?php  $xQx_sellprice = "SELECT SUM(sellPrice) FROM items_ordered WHERE invoiceId = $invoice_id AND isDeleted = '0'";
-  $query_sellprice=mysqli_query($conn,$xQx_sellprice);   
 
-                while($row=mysqli_fetch_array($query_sellprice))
-
-                      {  
-?>
                 <td><?php
 
-                  $totaltax =  $row[0] + ($row[0] * $tax_value);
+                 
+                $tot=array_sum($sp);
 
-               echo $_SESSION["total_price"];
-                    $total = $row[0];
+
+                  echo   $totx =  $tot + ($tot* $tax_value);
 
                 ?></td>
 
-<?php 
-                      }
-
-?>
 
               </tr>
 
@@ -459,15 +457,15 @@ else
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-200px'><b>Total Amount</b></button>
                   </div>
-                  <input type="hidden" name="total_amount" value='<?php echo $total;?>'>
-                  <input type='text' class='form-control'     style='' value='<?php echo $total;?>' disabled>
+                  <input type="hidden" name="total_amount" value='<?php echo $totx;?>'>
+                  <input type='text' class='form-control'     style='' value='<?php echo $totx;?>' disabled>
                   </div>
       <br>
                    <div class='input-group margin'>
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-200px'><b>Enter Payment Amount</b></button>
                   </div>
-                  <input type='number' class='form-control' name = "paid_amount"  style='' min='<?php echo (int)$total;?>'  required>
+                  <input type='number' class='form-control' name = "paid_amount"  style='' min='<?php echo (int)$totx;?>'  required>
                   </div>
 
         </div>

@@ -392,7 +392,7 @@ function getItems()
   $xQx .= "assetName, ";
   $xQx .= "quantity ";
   $xQx .= "FROM assetstwo ";
-  $xQx .= "WHERE isDeleted = '0'";
+  $xQx .= "WHERE quantity !='0' AND isDeleted = '0'";
   $query=mysqli_query($conn,$xQx);
 
   return  $query;

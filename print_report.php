@@ -54,8 +54,32 @@ $pdf->Cell(34 ,5,$date,0,1);//end of line
 						$contactPerson = $row["contactPerson"];
 						$address = $row["address"];
 						$email = $row["email"];	
+            $tax = $row["tax_status"]; 
 
-					
+				
+
+
+
+
+
+          if($tax="Vatable")
+
+          {
+
+            $tax_value = 00.12;
+
+
+          }
+          else
+
+          {
+
+            $tax_value = 0.00;
+          
+
+          }
+
+
 }
 
 
@@ -95,15 +119,16 @@ $pdf->Cell(189 ,10,'',0,1);//end of line
 //invoice contents
 $pdf->SetFont('Arial','B',12);
 
-$pdf->Cell(130 ,5,'Description',1,0);
-$pdf->Cell(25 ,5,'Taxable',1,0);
-$pdf->Cell(34 ,5,'Amount',1,1);//end of line
+$pdf->Cell(105 ,5,'Description',1,0);
+$pdf->Cell(25 ,5,'Quantity',1,0);
+$pdf->Cell(25 ,5,'Amount',1,0);
+$pdf->Cell(34 ,5,'Total',1,1);//end of line
 
 $pdf->SetFont('Arial','',12);
 
 //Numbers are right-aligned so we give 'R' after new line parameter
 
-
+$sp="";
   $xQx_items = "SELECT * FROM 	items_ordered WHERE invoiceId = '$invoiceId'";
   $query_items=mysqli_query($conn,$xQx_items);         
 
@@ -111,33 +136,41 @@ $pdf->SetFont('Arial','',12);
                       while($row=mysqli_fetch_array($query_items))
 
 {
-
-$pdf->Cell(130 ,5,$row["assetName"],1,0);
-$pdf->Cell(25 ,5,'-',1,0);
-$pdf->Cell(34 ,5,$row["sellPrice"],1,1,'R');//end of line
+$sp[].=$row["sellPrice"]*$row["quantity"];
+$pdf->Cell(105 ,5,$row["assetName"],1,0);
+$pdf->Cell(25 ,5,$row["quantity"],1,0);
+$pdf->Cell(25 ,5,$row["sellPrice"],1,0);
+$pdf->Cell(34 ,5,$row["sellPrice"]*$row["quantity"],1,1,'R');//end of line
 
 }
 
+$pdf->Cell(189 ,10,'',0,1);
 
 
+
+ $tot=array_sum($sp);
+
+
+ $toxy =$tot* $tax_value;
+ $totx =  $tot + ($tot* $tax_value);
 
 //summary
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Subtotal',0,0);
-$pdf->Cell(4 ,5,'$',1,0);
-$pdf->Cell(30 ,5,'4,450',1,1,'R');//end of line
+$pdf->Cell(4 ,5,'P',1,0);
+$pdf->Cell(30 ,5,$tot,1,1,'R');//end of line
 
 
 
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Tax Rate',0,0);
-$pdf->Cell(4 ,5,'$',1,0);
-$pdf->Cell(30 ,5,'10%',1,1,'R');//end of line
+$pdf->Cell(4 ,5,'P',1,0);
+$pdf->Cell(30 ,5,$toxy,1,1,'R');//end of line
 
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Total Due',0,0);
-$pdf->Cell(4 ,5,'$',1,0);
-$pdf->Cell(30 ,5,'4,450',1,1,'R');//end of line
+$pdf->Cell(4 ,5,'P',1,0);
+$pdf->Cell(30 ,5,$totx,1,1,'R');//end of line
 //output the result
 $pdf->Output();
 ?>
