@@ -148,7 +148,7 @@ CREATE TABLE `assetstwo` (
 
 /*Data for the table `assetstwo` */
 
-insert  into `assetstwo`(`assetsId`,`code`,`serialName`,`supId`,`itmTypeId`,`assetName`,`brand`,`model`,`description`,`unitPrice`,`sellPrice`,`quantity`,`date_purchased`,`endofWarranty_date`,`req_date`,`remarks`,`isDeleted`,`asstId`,`entId`,`catId`,`statId`,`acqTypeId`,`delivery_date`,`deprec_value`,`pr_no`,`req_auth_id`,`req_dep_id`,`est_useful_life`,`isAccount`) values (1,'1111','1010',1,'d','ASSET1','brand1','model1','h','3000','4000',0,'l','m','n','o','0','q','r','s','t','u','v','w',NULL,NULL,NULL,NULL,NULL),(2,'2222','129',2,'b','ASSET2','brand2','model2','m','2000','3000',0,'k','l','k','k','0','k','k','k','ll','l',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'3333333','3918918',1,'2','Sample Item','Brand 123','Model 123','Maganda to pre ','200.00','500.00',100,'2018-01-23','2018-01-25',NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,'2018-01-26',NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `assetstwo`(`assetsId`,`code`,`serialName`,`supId`,`itmTypeId`,`assetName`,`brand`,`model`,`description`,`unitPrice`,`sellPrice`,`quantity`,`date_purchased`,`endofWarranty_date`,`req_date`,`remarks`,`isDeleted`,`asstId`,`entId`,`catId`,`statId`,`acqTypeId`,`delivery_date`,`deprec_value`,`pr_no`,`req_auth_id`,`req_dep_id`,`est_useful_life`,`isAccount`) values (1,'1111','1010',1,'d','ASSET1','brand1','model1','h','3000','4000',0,'l','m','n','o','0','q','r','s','t','u','v','w',NULL,NULL,NULL,NULL,NULL),(2,'2222','129',2,'b','ASSET2','brand2','model2','m','2000','3000',0,'k','l','k','k','0','k','k','k','ll','l',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'3333333','3918918',1,'2','Sample Item','Brand 123','Model 123','Maganda to pre ','200.00','500.00',80,'2018-01-23','2018-01-25',NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,'2018-01-26',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `businesstypes` */
 
@@ -286,7 +286,7 @@ CREATE TABLE `invoices` (
 
 /*Data for the table `invoices` */
 
-insert  into `invoices`(`invoiceId`,`invoiceStatId`,`clientId`,`clientName`,`clientAddress`,`bustypeId`,`bustypeName`,`controlNo`,`tin`,`osca_pwd_no`,`sc_tin_no`,`date_created`,`due_date`,`terms`,`remarks`,`vatableSale`,`totalSales`,`vatExemptSale`,`lessVat`,`zeroRatedSale`,`discount`,`vat`,`sales`,`totalAmountDue`,`isDeleted`,`salesPerson`) values (7,100001,7,'Halcyon Marine Healthcare Systems',NULL,1,'Computer',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remarks here','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',1,NULL),(8,100002,7,'Halcyon Marine Healthcare Systems',NULL,2,'Industrial',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remarks 1 ','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',1,NULL),(9,100005,7,'Halcyon Marine Healthcare Systems',NULL,2,'Industrial',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remark1\r\n','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',0,NULL);
+insert  into `invoices`(`invoiceId`,`invoiceStatId`,`clientId`,`clientName`,`clientAddress`,`bustypeId`,`bustypeName`,`controlNo`,`tin`,`osca_pwd_no`,`sc_tin_no`,`date_created`,`due_date`,`terms`,`remarks`,`vatableSale`,`totalSales`,`vatExemptSale`,`lessVat`,`zeroRatedSale`,`discount`,`vat`,`sales`,`totalAmountDue`,`isDeleted`,`salesPerson`) values (7,100001,7,'Halcyon Marine Healthcare Systems',NULL,1,'Computer',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remarks here','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',1,NULL),(8,100002,7,'Halcyon Marine Healthcare Systems',NULL,2,'Industrial',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remarks 1 ','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',1,NULL),(9,100005,7,'Halcyon Marine Healthcare Systems',NULL,2,'Industrial',NULL,NULL,NULL,NULL,'2018-01-30','2018-01-30',NULL,'Remark1\r\n','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000','0.0000',1,NULL);
 
 /*Table structure for table `items_ordered` */
 
@@ -304,11 +304,11 @@ CREATE TABLE `items_ordered` (
   `date-added` varchar(255) DEFAULT NULL,
   `isDeleted` int(255) DEFAULT NULL,
   PRIMARY KEY (`orderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 /*Data for the table `items_ordered` */
 
-insert  into `items_ordered`(`orderId`,`assetsId`,`assetName`,`quantity`,`unitPrice`,`sellPrice`,`invoiceId`,`handledBy`,`date-added`,`isDeleted`) values (29,3,'Sample Item',15,200,500,5,NULL,NULL,0),(30,3,'Sample Item',20,200,500,5,NULL,NULL,0),(31,2,'ASSET2',1,2000,3000,6,NULL,NULL,0),(32,3,'Sample Item',10,200,500,7,NULL,NULL,0),(33,3,'Sample Item',15,200,500,8,NULL,NULL,0),(34,1,'ASSET1',1,3000,4000,8,NULL,NULL,0),(35,2,'ASSET2',1,2000,3000,8,NULL,NULL,0);
+insert  into `items_ordered`(`orderId`,`assetsId`,`assetName`,`quantity`,`unitPrice`,`sellPrice`,`invoiceId`,`handledBy`,`date-added`,`isDeleted`) values (29,3,'Sample Item',15,200,500,5,NULL,NULL,0),(30,3,'Sample Item',20,200,500,5,NULL,NULL,0),(31,2,'ASSET2',1,2000,3000,6,NULL,NULL,0),(32,3,'Sample Item',10,200,500,7,NULL,NULL,0),(33,3,'Sample Item',15,200,500,8,NULL,NULL,0),(34,1,'ASSET1',1,3000,4000,8,NULL,NULL,0),(35,2,'ASSET2',1,2000,3000,8,NULL,NULL,0),(36,3,'Sample Item',10,200,500,9,NULL,NULL,0),(37,3,'Sample Item',10,200,500,9,NULL,NULL,0);
 
 /*Table structure for table `reportsclientorder` */
 
@@ -327,11 +327,11 @@ CREATE TABLE `reportsclientorder` (
   `handledBy` varchar(255) DEFAULT NULL,
   `date_paid` date DEFAULT NULL,
   PRIMARY KEY (`reportOrder_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `reportsclientorder` */
 
-insert  into `reportsclientorder`(`reportOrder_id`,`invoiceId`,`invoiceStatId`,`clientId`,`clientName`,`bustypeId`,`bustypeName`,`total_amount`,`amount_paid`,`handledBy`,`date_paid`) values (10,7,100001,7,'Halcyon Marine Healthcare Systems',1,'Computer',500,12000,'admin','2018-01-30'),(11,8,100002,7,'Halcyon Marine Healthcare Systems',2,'Industrial',7500,8000,'admin','2018-01-30');
+insert  into `reportsclientorder`(`reportOrder_id`,`invoiceId`,`invoiceStatId`,`clientId`,`clientName`,`bustypeId`,`bustypeName`,`total_amount`,`amount_paid`,`handledBy`,`date_paid`) values (10,7,100001,7,'Halcyon Marine Healthcare Systems',1,'Computer',500,12000,'admin','2018-01-30'),(11,8,100002,7,'Halcyon Marine Healthcare Systems',2,'Industrial',7500,8000,'admin','2018-01-30'),(12,9,100005,7,'Halcyon Marine Healthcare Systems',2,'Industrial',11200,13000,'admin','2018-01-30');
 
 /*Table structure for table `specifications` */
 
