@@ -139,8 +139,8 @@ $sp="";
 $sp[].=$row["sellPrice"]*$row["quantity"];
 $pdf->Cell(105 ,5,$row["assetName"],1,0);
 $pdf->Cell(25 ,5,$row["quantity"],1,0);
-$pdf->Cell(25 ,5,$row["sellPrice"],1,0);
-$pdf->Cell(34 ,5,$row["sellPrice"]*$row["quantity"],1,1,'R');//end of line
+$pdf->Cell(25 ,5,number_format($row["sellPrice"]),1,0);
+$pdf->Cell(34 ,5,number_format($row["sellPrice"]*$row["quantity"]),1,1,'R');//end of line
 
 }
 
@@ -158,19 +158,19 @@ $pdf->Cell(189 ,10,'',0,1);
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Subtotal',0,0);
 $pdf->Cell(4 ,5,'P',1,0);
-$pdf->Cell(30 ,5,$tot,1,1,'R');//end of line
+$pdf->Cell(30 ,5,number_format($tot),1,1,'R');//end of line
 
 
 
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Tax Rate',0,0);
 $pdf->Cell(4 ,5,'P',1,0);
-$pdf->Cell(30 ,5,$toxy,1,1,'R');//end of line
+$pdf->Cell(30 ,5,number_format($toxy),1,1,'R');//end of line
 
 $pdf->Cell(130 ,5,'',0,0);
 $pdf->Cell(25 ,5,'Total Due',0,0);
 $pdf->Cell(4 ,5,'P',1,0);
-$pdf->Cell(30 ,5,$totx,1,1,'R');//end of line
+$pdf->Cell(30 ,5,number_format($totx),1,1,'R');//end of line
 //output the result
 $pdf->Output();
 ?>
