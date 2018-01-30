@@ -106,24 +106,19 @@ $(document).ready(function(){
 
     
 
-    <div class="rows">
-            <div class="col-md-12" id="addbtn">
-                <button type="button"  class="btn btn-block btn-success btn-flat">ADD</button>
-            </div>
-    </div>
 
-<div id="panel">
+<!-- <div id="panel">
 <?php
-frm_add_client();
+
 ?>
 </div>
-
+ -->
 
 <br>
 <br>
 
 <?php
-tbl_client();
+tbl_reports();
 ?>
 
 

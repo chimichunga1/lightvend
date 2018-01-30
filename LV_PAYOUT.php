@@ -134,7 +134,7 @@ $(document).ready(function(){
 <?php 
 if(!isset($_POST["id"]))
 {
-
+session_start();
 ?>
     <script>   
     window.location.href="admin.php?x=SALES%20INVOICES";
@@ -142,7 +142,7 @@ if(!isset($_POST["id"]))
 <?php
 }
 $invoice_id = $_POST["id"];
-
+$_SESSION["get_invoiceId"] = $invoice_id;
 
  $xQx_get_details = "SELECT * FROM invoices WHERE invoiceId = $invoice_id AND isDeleted = '0'";
   $query_get_details=mysqli_query($conn,$xQx_get_details);         
@@ -167,8 +167,11 @@ $invoice_id = $_POST["id"];
                       { 
 
                         $clientName = $row["clientName"];
+                        $checkVat = $row["tax_status"];
 
                       }
+
+$_SESSION["checkVat"] = $checkVat;
 $_SESSION["cName"] = $clientName;
 $cName = $_SESSION["cName"];
  $xQx_get_busname = "SELECT * FROM businesstypes WHERE busTypeId = $bustypeId";
@@ -312,7 +315,7 @@ $cName = $_SESSION["cName"];
       <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-6">
-          <p class="lead">Payment Methods:</p>
+<!--           <p class="lead">Payment Methods:</p>
           <img src="../../dist/img/credit/visa.png" alt="Visa">
           <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
           <img src="../../dist/img/credit/american-express.png" alt="American Express">
@@ -320,7 +323,7 @@ $cName = $_SESSION["cName"];
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
 Terms and Conditions Here.
-          </p>
+          </p> -->
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
@@ -346,7 +349,10 @@ Terms and Conditions Here.
                         ?>
  <tr>                       
 <th style="width:50%"></th>
-<th><?php echo $row["sellPrice"]; 
+<th><?php echo $row["sellPrice"] * $row["quantity"]; 
+
+$_SESSION["total_price"] +=  $row["sellPrice"] * $row["quantity"];
+
 
 
 
@@ -354,10 +360,36 @@ Terms and Conditions Here.
 </tr>
 <?php
 }
+
+$checkVat_new = $_SESSION["checkVat"];
+if($checkVat_new = "Vatable")
+
+{
+
+  $tax_value = 00.12;
+  $tax_value_string = "12% Tax";
+
+}
+else
+
+{
+
+  $tax_value = 0.00;
+  $tax_value_string = "Non Vatable";
+
+}
 ?>
 
 
               <tr>
+
+
+                <th>Tax: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <?php echo $tax_value_string; ?></th>    
+  </tr>
+  <tr>       
                 <th>Total:</th>
 
 
@@ -368,7 +400,11 @@ Terms and Conditions Here.
 
                       {  
 ?>
-                <td><?php echo $row[0]; 
+                <td><?php
+
+                  $totaltax =  $row[0] + ($row[0] * $tax_value);
+
+               echo $_SESSION["total_price"];
                     $total = $row[0];
 
                 ?></td>
@@ -393,12 +429,12 @@ Terms and Conditions Here.
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+<!--           <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a> -->
           <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#payout"><i class="fa fa-credit-card" ></i> Proceed Payment
           </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+<!--           <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="fa fa-download"></i> Generate PDF
-          </button>
+          </button> -->
         </div>
       </div>
     </section>
@@ -419,20 +455,21 @@ Terms and Conditions Here.
         <div class='modal-body'>
 
 
-          <form  role='form' action='LV_submit.php' method='post' id='partdelpost' enctype='multipart/form-data'>
+          <form  role='form' action='payout.php' method='post' id='partdelpost' enctype='multipart/form-data'>
 
                    <div class='input-group margin'>
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-200px'><b>Total Amount</b></button>
                   </div>
-                  <input type='text' class='form-control'   disabled style='' value='<?php echo $total;?>'>
+                  <input type="hidden" name="total_amount" value='<?php echo $total;?>'>
+                  <input type='text' class='form-control'     style='' value='<?php echo $total;?>' disabled>
                   </div>
       <br>
                    <div class='input-group margin'>
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-200px'><b>Enter Payment Amount</b></button>
                   </div>
-                  <input type='number' class='form-control'   style='' min='<?php echo (int)$total;?>'  required>
+                  <input type='number' class='form-control' name = "paid_amount"  style='' min='<?php echo (int)$total;?>'  required>
                   </div>
 
         </div>

@@ -300,7 +300,7 @@ function frm_add_supplier()
   </div>
 
 
-  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addSuppliers">Submit</button>
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="add_submit">Submit</button>
   </form>  
 
   <br>
@@ -920,7 +920,7 @@ function frm_add_client()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Telephone No.</button>
                   </div>
-                  <input type="text" class="form-control"  name="Client_e"  required>
+                  <input type="number" class="form-control"  name="Client_e"  required>
       </div>
     </div>
     <div class="col-md-4">
@@ -928,7 +928,7 @@ function frm_add_client()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Mobile No.</button>
                   </div>
-                  <input type="text" class="form-control"  name="Client_g"  >
+                  <input type="number" class="form-control"  name="Client_g"  >
       </div>
     </div>
     <div class="col-md-4">
@@ -936,7 +936,7 @@ function frm_add_client()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Fax No.</button>
                   </div>
-                  <input type="text" class="form-control"  name="Client_f"  >
+                  <input type="number" class="form-control"  name="Client_f"  >
       </div>
     </div>
   </div>
@@ -1233,7 +1233,7 @@ function frm_add_stocks()
   </div>
 <br>
  
-  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addSuppliers">Save</button>
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addSuppliers_stocks">Save</button>
   </form>  
 
   <br>

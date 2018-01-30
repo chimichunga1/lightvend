@@ -5,22 +5,69 @@ include('support/function.php');
 session_start();
 
 
-if (isset($_POST['addSuppliers']))
+if (isset($_POST['add_submit']))
 {
-//-----------------------------------------------
+//
+
+$a = $_POST['Supplier_a'];
+
+$b = $_POST['Supplier_b'];
+
+$c = $_POST['Supplier_c'];
+$d  = $_POST['Supplier_d'];
+$e = $_POST['Supplier_e'];
+$f = $_POST['Supplier_f'];
+$g = $_POST['Supplier_g'];
+$h = $_POST['Supplier_h'];
+$i = $_POST['Supplier_i'];
+$j = $_POST['Supplier_j'];
+$k = $_POST['Supplier_k'];
+
+
+
+
+
+
     if(empty($_POST['Supplier_l']))
     {
-        addSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],$_POST['Supplier_j'],$_POST['Supplier_k'],'0');
+
+
+
+
+
+$xQx = "INSERT INTO suppliers(supName, busTypeId, contactPerson, address, telno, faxno, email, approved_by, date_approved, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','0')";
+        $query=mysqli_query($conn,$xQx);
+
+
+
+
+
+
+
+
+
+
+
     }
     else
     {
-        addSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],$_POST['Supplier_j'],$_POST['Supplier_k'],$_POST['Supplier_l']);    
+
+$l = $_POST['Supplier_l'];
+
+$xQx = "INSERT INTO suppliers(supName, busTypeId, contactPerson, address, telno, facno, email, approved_by, date_approved, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','$l')";
+        $query=mysqli_query($conn,$xQx);
+
+
+
+
+
+
     }
 //-----------------------------------------------
     ?>
     <script>   
     window.location.href="admin.php?x=SUPPLIERS";
-    </script>
+    </script>  
 <?php
 }
 
@@ -106,8 +153,34 @@ $d = $_POST['invoice_d'];
 $e = $_POST['invoice_e'];
 $f = $_POST['invoice_f'];
 
+  $xQx_get_cname = "SELECT * FROM clients WHERE clientId = '$b'";
+  $query_get_cname=mysqli_query($conn,$xQx_get_cname);         
 
-$xQx = "INSERT INTO invoices(invoiceStatId,clientId,busTypeId,date_created,due_date,remarks,isDeleted)VALUES ('$a','$b','$c','$d','$e','$f','0')";
+
+                      while($row=mysqli_fetch_array($query_get_cname))
+
+                      { 
+
+                        $get_cname = $row["clientName"];
+
+
+                      }
+
+  $xQx_get_bname = "SELECT * FROM businesstypes WHERE busTypeId = '$c'";
+  $query_get_bname=mysqli_query($conn,$xQx_get_bname);         
+
+
+                      while($row=mysqli_fetch_array($query_get_bname))
+
+                      { 
+
+                        $get_bname = $row["busTypeName"];
+
+
+                      }
+
+
+$xQx = "INSERT INTO invoices(invoiceStatId , clientId, clientName, busTypeId, bustypeName, date_created ,due_date ,remarks ,isDeleted)VALUES ('$a','$b','$get_cname','$c','$get_bname','$d','$e','$f','0')";
         $query=mysqli_query($conn,$xQx);
     }
 //-----------------------------------------------
@@ -471,4 +544,21 @@ $invoiceId_submit = $_SESSION["invoiceId_submit"];
     </script>
 
     <?php
+
+
+
+
+if(isset($_POST["payout"]))
+
+{
+    echo "tite";
+}
+
+
+
+
+
+
+
+
 ?>

@@ -15,7 +15,6 @@ $sample = $_POST['id'];
 $_SESSION["invoiceId_submit"] = $sample;
 }
 
-echo $sample;
 
 frm_add_itemsinvo();
 
