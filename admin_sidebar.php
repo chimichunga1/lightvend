@@ -23,7 +23,7 @@
     background-repeat: no-repeat;height:30px;width:30px;"  class="img-circle" alt="User Image">
  
 
-          <center ><b><p style="font-size:20px;color:#b8c7ce;"><?php echo substr($_SESSION['fn'],0,1); ?></p></b></center>
+          <center ><b><p style="font-size:20px;color:#3c8dbc;"><?php echo strtoupper(substr($_SESSION['fn'],0,1)); ?></p></b></center>
           </div>
         </div>
         <div class="pull-left info" style="left:30px;">
@@ -48,15 +48,11 @@
   include('label_name.php'); 
 
    $x=count($sidebar_label);
-
-   for ($i=0; $i < $x ; $i++ ) 
-   { 
-  
-        if($i!=7)
-        {
-              if(isset($_GET['x']))
+function listnav($a,$b,$c)
+{
+            if(isset($a))
               {
-                if(($_GET['x']) ==$sidebar_label[$i])
+                if(($a) ==$b)
                 {
                   echo "<li class='active'>";
                 }
@@ -69,12 +65,158 @@
               {
               echo"<li>";
               }
-              $y="?x=".$sidebar_label[$i];
-              ?>
-              
-              <?php  echo'<a href="'. $y .'"><i class="'.$sidebar_icon[$i].'"></i> <span> '. $sidebar_label[$i] .' </span></a></li>'; ?>
-              <?php
-          }
+              $y="?x=".$b;
+             echo'<a href="'. $y .'"><i class="'.$c.'"></i> <span> '. $b .' </span></a></li>'; 
+}
+function treelistnav($a,$b,$c,$d,$e,$f)
+{
+
+
+          if (strpos($a, 'STOCK') !== false)
+                      {
+                     echo '<li class="active treeview menu-open">';
+                      }
+                      else
+                      {
+                      echo '<li class="treeview menu-close">';
+                      }
+
+
+                      echo '<a href="?x='.$b.'">
+                        <i class="'.$c.'"></i> <span>'.$b.'</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu">
+                        ';
+
+                      $x1=count($d);
+                                    for ($j=0; $j < $x1 ; $j++ ) 
+                                    {      
+
+                                            
+                                              listnav($a,$e[$j],$f);
+                                           
+
+                                  }
+              echo " 
+               </ul>
+            </li>";
+
+
+}    
+function punolistnav($a,$b,$c,$d,$e,$f)
+{
+
+
+          if (strpos($a, 'INVOICE') !== false)
+                      {
+                     echo '<li class="active treeview menu-open">';
+                      }
+                      else
+                      {
+                      echo '<li class="treeview menu-close">';
+                      }
+
+
+                      echo '<a href="?x='.$b.'">
+                        <i class="'.$c.'"></i> <span>'.$b.'</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu">
+                        ';
+
+                      $x1=count($d);
+                                    for ($j=0; $j < $x1 ; $j++ ) 
+                                    {      
+
+                                            
+                                              listnav($a,$e[$j],$f);
+                                           
+
+                                  }
+              echo " 
+               </ul>
+            </li>";
+
+
+}     
+
+
+    
+
+   for ($i=0; $i < $x ; $i++ ) 
+   { 
+        
+         if($i==2 &&  $_SESSION["access"]==1    )
+        { 
+
+                      $a=$_GET['x'];
+                      $b=$sidebar_label[$i];
+                      $c=$sidebar_icon[$i];
+                      $d=$sub_sidebar_label;
+                      $e=$sub_sidebar_label;
+                      $f="fa fa-circle-o";     
+                      treelistnav($a,$b,$c,$d,$e,$f);          
+        }
+        elseif($i==1 &&  $_SESSION["access"]==2   )
+        { 
+
+                      $a=$_GET['x'];
+                      $b=$sidebar_label[$i];
+                      $c=$sidebar_icon[$i];
+                      $d=$sub_sidebar_label;
+                      $e=$sub_sidebar_label;
+                      $f="fa fa-circle-o";     
+                      treelistnav($a,$b,$c,$d,$e,$f);          
+        }
+
+       elseif($i==4 &&  $_SESSION["access"]==1    )
+        { 
+
+                      $a=$_GET['x'];
+                      $b=$sidebar_label[$i];
+                      $c=$sidebar_icon[$i];
+                      $d=$sub_sidebar_label1;
+                      $e=$sub_sidebar_label1;
+                      $f="fa fa-circle-o";     
+                      punolistnav($a,$b,$c,$d,$e,$f);          
+        }
+         elseif($i==3 &&  $_SESSION["access"]==2    )
+        { 
+
+                      $a=$_GET['x'];
+                      $b=$sidebar_label[$i];
+                      $c=$sidebar_icon[$i];
+                      $d=$sub_sidebar_label1;
+                      $e=$sub_sidebar_label1;
+                      $f="fa fa-circle-o";     
+                      punolistnav($a,$b,$c,$d,$e,$f);          
+        }
+        elseif($i!=6 && $i!=7 &&  $_SESSION["access"]==2)
+        {     
+              $a=$_GET['x'];
+              $b=$sidebar_label[$i];
+              $c=$sidebar_icon[$i];
+              listnav($a,$b,$c);
+        }
+
+        elseif($i!=7 && $i!=8 &&  $_SESSION["access"]==1)
+        { 
+              $a=$_GET['x'];
+              $b=$sidebar_label[$i];
+              $c=$sidebar_icon[$i];
+              listnav($a,$b,$c);
+        }
+
+        
+
+
+
+
           else
           {
             $y="?x=".$sidebar_label[$i];
@@ -87,7 +229,7 @@
 
  
       
-      
+
 
         <!-- Optionally, you can add icons to the links -->
         

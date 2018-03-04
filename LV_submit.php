@@ -10,32 +10,29 @@ if (isset($_POST['add_submit']))
 //
 
 $a = $_POST['Supplier_a'];
-
 $b = $_POST['Supplier_b'];
-
 $c = $_POST['Supplier_c'];
-$d  = $_POST['Supplier_d'];
+$d = $_POST['Supplier_d'];
 $e = $_POST['Supplier_e'];
 $f = $_POST['Supplier_f'];
 $g = $_POST['Supplier_g'];
 $h = $_POST['Supplier_h'];
 $i = $_POST['Supplier_i'];
-$j = $_POST['Supplier_j'];
-$k = $_POST['Supplier_k'];
 
 
 
 
 
 
-    if(empty($_POST['Supplier_l']))
+
+    if(empty($_POST['Supplier_j']))
     {
 
 
 
 
 
-$xQx = "INSERT INTO suppliers(supName, busTypeId, contactPerson, address, telno, faxno, email, approved_by, date_approved, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','0')";
+$xQx = "INSERT INTO suppliers(supName, contactPerson, busTypeId, address, telno, faxno, email, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','0')";
         $query=mysqli_query($conn,$xQx);
 
 
@@ -52,9 +49,9 @@ $xQx = "INSERT INTO suppliers(supName, busTypeId, contactPerson, address, telno,
     else
     {
 
-$l = $_POST['Supplier_l'];
+$j = $_POST['Supplier_j'];
 
-$xQx = "INSERT INTO suppliers(supName, busTypeId, contactPerson, address, telno, facno, email, approved_by, date_approved, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','$l')";
+$xQx = "INSERT INTO suppliers(supName, contactPerson, busTypeId, address, telno, faxno, email, remarks, typeofSup, isActive)VALUES ('$a','$b','$c','$d','$e','$f','$g','$h','$i','$j')";
         $query=mysqli_query($conn,$xQx);
 
 
@@ -211,13 +208,13 @@ if (isset($_POST['editSuppliers']))
 {
 //-----------------------------------------------
 
-    if(empty($_POST['Supplier_i']))
+    if(empty($_POST['Supplier_j']))
     {
-        updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],'0',$_POST['Supplier_j'],$_POST['Supplier_k'],$_POST['Supplier_l'],$_POST['supId']);
+         updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],'0',$_POST['Supplier_k']);
     }
     else
     {
-        updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],$_POST['Supplier_j'],$_POST['Supplier_k'],$_POST['Supplier_l'],$_POST['supId']);    
+        updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],$_POST['Supplier_j'],$_POST['Supplier_k']);    
     }
 //-----------------------------------------------
     ?>
@@ -278,8 +275,26 @@ if (isset($_POST['editClient']))
 <?php
 }
 
+if(isset($_POST['editStock']))
+{
+$a=$_POST['Estock_a'];
+$b=$_POST['Estock_b'];
+$c=$_POST['Estock_c'];
+$d=$_POST['Estock_d'];
+$e=$_POST['Estock_e'];
+$f=$_POST['Estock_f'];
+$g=$_POST['Estock_g'];
+$h=$_POST['Estock_h'];
+$i=$_POST['Estock_i'];
+$z=$_POST['Estock_z'];
 
+    editStock($a,$b,$c,$d,$e,$f,$g,$h,$i,$z);
 
+echo '   <script>   
+    window.location.href="admin.php?x=STOCK DETAILS";
+    </script>';
+
+}
 
 if (isset($_POST['addGroups']))
 {
@@ -408,9 +423,43 @@ $catType = $_POST["catType"];
 
 
 
+if (isset($_POST['copysave']))
+
+
+{
 
 
 
+
+$_SESSION['stock_a'] = $a = $_POST["stock_a"];
+$_SESSION['stock_b'] = $b = $_POST["stock_b"];
+$_SESSION['stock_c'] = $c = $_POST["stock_c"];
+$_SESSION['stock_d'] = $d = $_POST["stock_d"];
+$_SESSION['stock_e'] = $e = $_POST["stock_e"];
+$_SESSION['stock_f'] = $f = $_POST["stock_f"];
+$_SESSION['stock_g'] = $g = $_POST["stock_g"];
+$_SESSION['stock_h'] = $h = $_POST["stock_h"];
+$_SESSION['stock_i'] = $i = $_POST["stock_i"];
+
+
+
+            addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i);
+
+/*  $xQx_insert = "INSERT INTO assetstwo (code,serialName,supId,itmTypeId,assetName,brand,model,description,unitPrice,sellPrice,date_purchased,endofWarranty_date,delivery_date,quantity,isDeleted) VALUES ('$tagcode','$SerialNumber','$Supplier','$ItemGroup','$Item','$Brand','$Model','$description','$unit_price','$sell_price','$DateofPurchase','$EndofWarranty','$deliveryDate','$quantity','0')";
+  $query_insert=mysqli_query($conn,$xQx_insert);    */    
+
+
+
+
+
+    
+//-----------------------------------------------
+    ?>
+  <script>   
+    window.location.href="admin.php?x=STOCK DETAILS";
+    </script> 
+<?php
+}
 
 
 
@@ -418,49 +467,36 @@ $catType = $_POST["catType"];
 if (isset($_POST['addstocks']))
 {
 //-----------------------------------------------
-    if(empty($_POST['stock_m']))
-    {
-    
-    }
-    else
-    {
+ 
 
   
 
-$tagcode = $_POST["stock_a"];
-$SerialNumber = $_POST["stock_b"];
-$Supplier = $_POST["stock_c"];
-$ItemGroup = $_POST["stock_d"];
-$Item = $_POST["stock_e"];
-$Brand = $_POST["stock_f"];
-$Model = $_POST["stock_g"];
-$quantity = $_POST["stock_q"];
-$description = $_POST["stock_h"];
-$unit_price = $_POST["stock_i"];
-$sell_price = $_POST["stock_j"];
-
-$DateofPurchase = $_POST["stock_k"];
-$deliveryDate= $_POST["stock_m"];
-$EndofWarranty = $_POST["stock_l"];
-$Remarks = $_POST["stock_n"];
+ $a = $_POST["stock_a"];
+ $b = $_POST["stock_b"];
+ $c = $_POST["stock_c"];
+ $d = $_POST["stock_d"];
+ $e = $_POST["stock_e"];
+ $f = $_POST["stock_f"];
+ $g = $_POST["stock_g"];
+ $h = $_POST["stock_h"];
+ $i = $_POST["stock_i"];
 
 
 
+            addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i);
 
-
-
-  $xQx_insert = "INSERT INTO assetstwo (code,serialName,supId,itmTypeId,assetName,brand,model,description,unitPrice,sellPrice,date_purchased,endofWarranty_date,delivery_date,quantity,isDeleted) VALUES ('$tagcode','$SerialNumber','$Supplier','$ItemGroup','$Item','$Brand','$Model','$description','$unit_price','$sell_price','$DateofPurchase','$EndofWarranty','$deliveryDate','$quantity','0')";
-  $query_insert=mysqli_query($conn,$xQx_insert);        
+/*  $xQx_insert = "INSERT INTO assetstwo (code,serialName,supId,itmTypeId,assetName,brand,model,description,unitPrice,sellPrice,date_purchased,endofWarranty_date,delivery_date,quantity,isDeleted) VALUES ('$tagcode','$SerialNumber','$Supplier','$ItemGroup','$Item','$Brand','$Model','$description','$unit_price','$sell_price','$DateofPurchase','$EndofWarranty','$deliveryDate','$quantity','0')";
+  $query_insert=mysqli_query($conn,$xQx_insert);    */    
 
 
 
 
 
-    }
+    
 //-----------------------------------------------
     ?>
   <script>   
-    window.location.href="admin.php?x=STOCKS";
+    window.location.href="admin.php?x=STOCK DETAILS";
     </script> 
 <?php
 }
@@ -475,7 +511,7 @@ delStock($_POST['stockId']);
 //-----------------------------------------------
     ?>
     <script>   
-    window.location.href="admin.php?x=STOCKS";
+    window.location.href="admin.php?x=STOCK DETAILS";
     </script>
 <?php 
 
@@ -488,7 +524,7 @@ delInvoice($_POST['InvoiceId']);
 //-----------------------------------------------
     ?>
     <script>   
-    window.location.href="admin.php?x=SALES%20INVOICES";
+    window.location.href="admin.php?x=NEW%20INVOICE";
     </script>
 <?php
 }
@@ -540,7 +576,7 @@ $invoiceId_submit = $_SESSION["invoiceId_submit"];
 ?>
 
     <script>   
-    window.location.href="admin.php?x=SALES%20INVOICES";
+    window.location.href="admin.php?x=NEW%20INVOICE";
     </script>
 
     <?php

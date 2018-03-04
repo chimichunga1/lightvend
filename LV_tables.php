@@ -170,23 +170,60 @@ function tbl_stocks()
   <table id="ManageStocks" class="ui celled table" cellspacing="0" width="100%">
           <thead>
               <tr>
-                  <th>Code</th>
-                  <th>Item</th>
+                  <th>Item Group</th>
                   <th>Quantity</th>
-           
                   <th>Unit Price</th>
-                   <th>Sell Price</th>    
-                  <th>Supplier</th>
-                  <th>Actions</th>
-
               </tr>
           </thead>
           <tbody>
             <?php  
 
 
-        $xQx=getStocks();
+       /* $xQx=getStocks();*/
+       $xQx=getstocktable(); //3
+        
 
+          while($row=mysqli_fetch_array($xQx))
+            {
+              echo" 
+              <tr>
+              <td>$row[0]</td>
+              <td>$row[1]</td>
+              <td>$row[2]</td>
+          
+         
+</tr>
+
+";
+  
+            }
+            ?>
+            
+          
+            </tbody>
+          </table>
+  <?php 
+} 
+?>
+
+<?php
+function tbl_stocks_v2()
+{
+  ?>
+ <table id="ManageStocksv2" class="ui celled table" cellspacing="0" width="100%">
+          <thead>
+              <tr>
+                  <th>Serial Number</th>
+                  <th>Item Group</th>
+                  <th>Supplier</th>
+                  <th>Unit Price</th>
+                  <th>Actions</th>
+
+              </tr>
+          </thead>
+          <tbody>
+            <?php  
+        $xQx=getstocktableindividual(); //10
           while($row=mysqli_fetch_array($xQx))
             {
              $SeeModal="SeeModal".$row[0];
@@ -195,44 +232,14 @@ function tbl_stocks()
               echo" 
               <tr>
               <td>$row[1]</td>
-              <td>$row[2]</td>
-              <td>$row[12]</td>
-              <td>$row[4]</td>
+              <td>$row[3]</td>
               <td>$row[5]</td>
-
-
+              <td>$row[4]</td>
+        
 ";
 
-
-?>
-      <td>
-<?php
-
-
- $supId = $row[6] ;
-
-  global $conn;
-  $xQx_supply = "SELECT supName FROM suppliers WHERE supId='$supId'";
-  $query_supply=mysqli_query($conn,$xQx_supply);
-   while($row_supply=mysqli_fetch_assoc($query_supply))
-            {
-          echo $row_supply["supName"];
-
-        }
-              ?>
-
-            
-</td>
-<?php 
-
-
 echo"
-
-
-
                           <td>
-
-
               <div class='row'>
      
               ";
@@ -285,70 +292,10 @@ echo"
               <div class='row'>
               ";
   
-           
-                  echo "
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Brand</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[7]."'>
-                  </div>
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Model</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[8]."'>
-                  </div>
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Description</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[9]."'>
-                  </div>
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Unit Price</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[10]."'>
-                  </div>
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Sell Price</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[11]."'>
-                  </div>                         
-
-         
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Date of Purchase</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[12]."'>
-                  </div>                         
-    
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>End of Warranty</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[13]."'>
-                  </div>    
-
-                  <div class='input-group margin'>
-                  <div class='input-group-btn'>
-                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Delivery Date</button>
-                  </div>
-                  <input type='text' class='form-control'   disabled style='' value='".$row[14]."'>
-                  </div>    
-
-              ";
+           $_SESSION['viewassetid']=$row[0];
+              viewformstockdetails();
               
             
-
               echo "      
               
               </div>
@@ -361,7 +308,6 @@ echo"
       </div>
     </div>
   </div>";
-
   echo "   
   <div id='".$EditModal."' class='modal fade'>
     <div class='modal-dialog modal-lg '>
@@ -372,18 +318,15 @@ echo"
         </div>
         <div class='modal-body'>
   ";
-  $_SESSION['editsupid']=$row[0];
+  $_SESSION['editassetid']=$row[0];
  
   frm_edit_stocks();
-
   echo "
         
         </div>
       </div>
     </div>
   </div>";
-
-
   echo "   
   <div id='".$DeleteModal."' class='modal fade'>
     <div class='modal-dialog'>
@@ -416,6 +359,7 @@ echo"
   <?php 
 } 
 ?>
+
 
 
 

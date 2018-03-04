@@ -28,7 +28,7 @@ $search=mysqli_fetch_assoc($row);
 
 <script>
 
-window.location.href="admin.php";
+window.location.href="admin.php?x=";
 
 </script>
 
@@ -42,7 +42,7 @@ window.location.href="admin.php";
 
 <script>
 
-window.location.href="admin.php";
+window.location.href="admin.php?x=";
 
 </script>
 

@@ -5,8 +5,8 @@
   <title>LIGHTVENT | DASHBOARD</title>
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+ </script>
   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/> -->
   <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script> -->
   
@@ -22,6 +22,11 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
   
 
+
+
+
+  <script type="text/javascript" src="sm/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="sm/dist/sweetalert.css"/>
 
     
 

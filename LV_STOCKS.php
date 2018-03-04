@@ -1,6 +1,6 @@
 <div class="wrapper" style="background-color:transparent;">
 
-<div><p>MANAGE SUPPLIERS</p></div>
+<div><p>MANAGE STOCKS</p></div>
 
 <style>
  th, td { white-space: nowrap; }
@@ -93,15 +93,14 @@ input::-webkit-inner-spin-button {
 $(document).ready(function(){
     $('#ManageStocks').DataTable({
         
-      
+    
 
       "aoColumns": [
           null,
           null,
           null,
-          null,
-          null,
-          null,
+       
+          
      
           { "orderSequence": [ "" ] }
         
@@ -114,6 +113,21 @@ $(document).ready(function(){
     });
 
 
+     $('#ViewStocks').DataTable({
+        
+      
+
+      "aoColumns": [
+          null,
+
+       
+          
+     
+          { "orderSequence": [ "" ] }
+        
+      ]
+    } );
+
 });
 
 </script>
@@ -121,6 +135,11 @@ $(document).ready(function(){
 
 
     
+
+   
+    
+
+
 
     <div class="rows">
             <div class="col-md-12" id="addbtn_stocks">
@@ -132,7 +151,7 @@ $(document).ready(function(){
 <br><br>
 <?php
 
-frm_add_stocks_a();
+frm_add_stocks();
 ?>
 </div>
 

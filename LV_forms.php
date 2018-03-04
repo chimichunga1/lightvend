@@ -156,7 +156,7 @@ function frm_add_supplier()
   <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Suppliers Name</button>
@@ -164,21 +164,25 @@ function frm_add_supplier()
                   <input type="text" class="form-control"  name="Supplier_a"  required>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Contact Person</button>
                   </div>
-                  <input type="text" class="form-control"  name="Supplier_c"  required>
+                  <input type="text" class="form-control"  name="Supplier_b"  required>
       </div>
     </div>
-    <div class="col-md-4">
+    
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Business Type</button>
                   </div>
                 
-              <select name="Supplier_b"  class="form-control" required>
+              <select name="Supplier_c"  class="form-control" required>
                  <option value=" " Selected> </option>
                  <?php $xQx=getallSup_BusType();
                  
@@ -195,6 +199,10 @@ function frm_add_supplier()
       </div>
     </div>
   </div>
+
+
+
+
   <div class="row">
     <div class="col-md-12">
       <div class="input-group margin">
@@ -235,44 +243,24 @@ function frm_add_supplier()
   </div>
 
   
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Approved By</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_h" >
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Date Approved</button>
-                  </div>
-                  <input type="date" class="form-control"  name="Supplier_i"  >
 
-              
-      </div>
-    </div>
-  </div>
-    
 
   <div class="row">
     <div class="col-md-12">
     <center>
               <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Remarks</button>
-              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="Supplier_j"  ></textarea>
+              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="Supplier_h"  ></textarea>
     </center>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Suppliers Type</button>
                   </div>
-              <select name="Supplier_k"  class="form-control"  required>
+              <select name="Supplier_i"  class="form-control"  required>
                 <option value=" " Selected> </option>
                 <option value="Potential">Potential</option>
                 <option value="Accredited">Accredited</option>
@@ -282,21 +270,12 @@ function frm_add_supplier()
       </div>
     </div>
     <div class="col-md-3">
+      
     <div style="margin:10px;">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">isActive</button>
+
+      <input type="checkbox" data-width="100%" data-height="20" data-toggle="toggle" name="Supplier_j" value="1" data-on="Active" data-off="Not Active">
     </div>
-    </div>
-    <div class="col-md-3">
-    <div class="input-group margin">
-      <center>
-                  <label class="switch">
-                    <input type="checkbox" name="Supplier_l" value="1"  >
-                    <span class="slider"></span>
-                  </label>
-                 
-      </center>
-    </div>
-    </div>
+  </div>
   </div>
 
 
@@ -319,7 +298,7 @@ function frm_edit_supplier()
     $xQx=getEdit_Supplier($_SESSION['editsupid']);
     while($row=mysqli_fetch_array($xQx))
     {
-        echo "<input type='text' class='form-control' id='SupId' name='supId'  style='position:absolute;z-index:-1;opacity:0;' value='".$row[12]."'>";
+        echo "<input type='text' class='form-control' id='SupId' name='Supplier_k'  style='position:absolute;z-index:-1;opacity:0;' value='".$row[12]."'>";
     ?>
 
     <div class="row">
@@ -351,7 +330,7 @@ function frm_edit_supplier()
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Business Type</button>
                     </div>
                     
-                <select name="Supplier_j"  class="form-control" >
+                <select name="Supplier_c"  class="form-control" >
                     <?php 
                       
                           $xQx=getSup_BusType($row[9]);
@@ -385,7 +364,7 @@ function frm_edit_supplier()
                 <div class="input-group-btn">
                 <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Address</button>
                 </div>
-                <?php echo " <input type='text' class='form-control'  name='Supplier_e'  value='".$row[4]."'>"; ?>
+                <?php echo " <input type='text' class='form-control'  name='Supplier_d'  value='".$row[4]."'>"; ?>
         </div>
         </div>
     </div>
@@ -397,7 +376,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Telephone No</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_c'  value='".$row[2]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='Supplier_e'  value='".$row[2]."'>"; ?>
         </div>
         </div>
         <div class="col-md-6">
@@ -405,7 +384,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Fax No</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_d'  value='".$row[3]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='Supplier_f'  value='".$row[3]."'>"; ?>
         </div>
         </div>
     </div>
@@ -415,34 +394,13 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Email</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_f'  value='".$row[5]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='Supplier_g'  value='".$row[5]."'>"; ?>
         </div>
         </div>
     </div>
 
     
-    <div class="row">
-        <div class="col-md-6">
-        <div class="input-group margin">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Approved By</button>
-                    </div>
-                    
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_k'  value='".$row[10]."'>"; ?>
-        </div>
-        </div>
-        <div class="col-md-6">
-        <div class="input-group margin">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Date Approved</button>
-                    </div>
-                    
-                    <?php echo " <input type='date' class='form-control'  name='Supplier_l'  value='".$row[11]."'>"; ?>
-
-                
-        </div>
-        </div>
-    </div>
+   
         
 
     <div class="row">
@@ -462,7 +420,7 @@ function frm_edit_supplier()
                     </div>
                 
 
-                    <select name="Supplier_g"  class="form-control"  >
+                    <select name="Supplier_i"  class="form-control"  >
                     <?php echo " <option value='".$row[6]."' Selected>SELECTED -> ".$row[6]."</option>"?>
                         <option value=" "> </option>
                         <option value="Potential">Potential</option>
@@ -474,31 +432,29 @@ function frm_edit_supplier()
                     
         </div>
         </div>
-        <div class="col-md-3">
-        <div style="margin:10px;">
-                        <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >isActive</button>
-        </div>
-        </div>
-        <div class="col-md-3">
-        <div class="input-group margin">
-        <center>
-                     <label class="switch">
+        
+        <div class="col-md-6">
+
+    
+
+
+        <div style="padding-top: 10px;">
+        
                     <?php 
                     if($row[8]=='1')
                     {
-                        echo '<input type="checkbox" checked name="Supplier_i" value="1" >';
+                       ?> <input type="checkbox" data-width="98%" checked   name="Supplier_j" value="1"  data-height="20" data-toggle="toggle"  data-on="Active" data-off="Not Active"><?php
                     }
                     else
                     {
-                        echo '<input type="checkbox" name="Supplier_i" value="1" >';
+                      ?> <input type="checkbox" data-width="98%" name="Supplier_j"   data-height="20" data-toggle="toggle" value="1" data-on="Active" data-off="Not Active"><?php
                     }
                     ?>
                         
-                     <span class="slider"></span>
-                    </label>
+           
                     
-        </center>
         </div>
+        
         </div>
     </div>
 
@@ -1025,227 +981,6 @@ function frm_add_client()
 <?php 
 
 
-function frm_add_stocks()
-{
-?>
-<div class="divider"></div>
-  <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Tag/Code</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_a"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">S/N</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_c"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Supplier</button>
-                  </div>
-                
-              <select name="Supplier_b"  class="form-control" required>
-                 <option value=" " Selected> </option>
-                 <?php $xQx=getSupplier();
-                 
-                      while($row=mysqli_fetch_array($xQx))
-
-                      {
-                        echo "
-                        <option value='".$row[0]."' >".$row[1]."</option>
-                        ";
-                      }
-                 ?>
-              
-              </select>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Item Group</button>
-                  </div>
-                
-              <select name="Supplier_b"  class="form-control" required>
-                 <option value=" " Selected> </option>
-                 <?php $xQx=getSupplier();
-                 
-                      while($row=mysqli_fetch_array($xQx))
-
-                      {
-                        echo "
-                        <option value='".$row[0]."' >".$row[1]."</option>
-                        ";
-                      }
-                 ?>
-              
-              </select>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Item</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_e"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Brand</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_f"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Model</button>
-                  </div>
-                 <input type="email" class="form-control"  name="Supplier_g"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Quantity</button>
-                  </div>
-                  <input type="email" class="form-control"  name="Supplier_q"  required>
-      </div>
-    </div>
-
-
-
-  </div>
-
-  
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Description</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_h" >
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Unit Price</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_i" >
-
-              
-      </div>
-    </div>
-  </div>
-    
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Date of Purchase</button>
-                  </div>
-                  <input type="date" class="form-control"  name="Supplier_j"  >
-
-              
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">End of Warranty</button>
-                  </div>
-                  <input type="date" class="form-control"  name="Supplier_k"  >
-
-              
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Delivery Date</button>
-                  </div>
-                  <input type="date" class="form-control"  name="Supplier_l"  >
-
-              
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-    <center>
-              <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Remarks</button>
-              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="Supplier_j"  ></textarea>
-    </center>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-         <!--<div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Suppliers Type</button>
-                  </div>
-              <select name="Supplier_k"  class="form-control"  required>
-                <option value=" " Selected> </option>
-                <option value="Potential">Potential</option>
-                <option value="Accredited">Accredited</option>
-         
-              </select>
-                  
-      </div> -->
-    </div>
-    <div class="col-md-3">
-    <!--<div style="margin:10px;">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">isActive</button>
-    </div> -->
-    </div>
-    <div class="col-md-3">
-       <!-- <div class="input-group margin">
-      <center>
-                  <label class="switch">
-                    <input type="checkbox" name="Supplier_l" value="1"  >
-                    <span class="slider"></span>
-                  </label>
-                 
-      </center>
-    </div> -->
-    </div>
-  </div>
-<br>
- 
-  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addSuppliers_stocks">Save</button>
-  </form>  
-
-  <br>
-  <br>
-  <div class="divider"></div>
-<?php 
-}
-
-?>
-
-
- <?php 
 
 
 function frm_edit_stocks()
@@ -1253,206 +988,120 @@ function frm_edit_stocks()
 ?>
 <div class="divider"></div>
   <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
+<?php
+  $x=  $_SESSION['editassetid'];
+    global $conn;
+ $xQx  = "SELECT assetsId,serialName,`code`,(SELECT ig.groupName FROM groups AS ig WHERE ig.groupid=.a.itmTypeId),unitPrice,(SELECT b.supName FROM suppliers AS b WHERE b.supId = a.supId) ,date_purchased,endofWarranty_date,delivery_date,remarks FROM assetstwo AS a  where assetsId='$x'";
 
-  <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Tag/Code</button>
+ $query=mysqli_query($conn,$xQx);
+ $row=mysqli_fetch_array( $query);
+
+
+      echo "
+
+       <input type='text' class='form-control'  style='display:none;' name='Estock_z'  style='' value='".$row[0]."'>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Serial Number</button>
                   </div>
-                  <input type="text" class="form-control"  name="Supplier_a"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">S/N</button>
+                  <input type='text' class='form-control'  name='Estock_a'  style='' value='".$row[1]."'>
                   </div>
-                  <input type="text" class="form-control"  name="Supplier_c"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Supplier</button>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Code</button>
                   </div>
-                
-              <select name="Supplier_b"  class="form-control" required>
-                 <option value=" " Selected> </option>
-                 <?php $xQx=getStocks();
+                  <input type='text' class='form-control'  name='Estock_b'  style='' value='".$row[2]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Item Group</button>
+                  </div>";
+                       echo "  <select name='Estock_c'  class='form-control' required>
+                 <option value='".$row[3]."' Selected>SELECTED -> ".$row[3]." </option>";
+                   $xQx=getGroup();
                  
-                      while($row=mysqli_fetch_array($xQx))
+                      while($row2=mysqli_fetch_array($xQx))
 
                       {
                         echo "
-                        <option value='".$row[0]."' >".$row[1]."</option>
+                        <option value='".$row2[0]."' >".$row2[1]."</option>
                         ";
                       }
-                 ?>
-              
+         
+                 echo "
               </select>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Item Group</button>
-                  </div>
-                
-              <select name="Supplier_b"  class="form-control" required>
-                 <option value=" " Selected> </option>
-                 <?php $xQx=getStocks();
                  
-                      while($row=mysqli_fetch_array($xQx))
+                  </div>
+
+
+
+           
+              
+
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Unit Price</button>
+                  </div>
+                  <input type='text' class='form-control'  name='Estock_d'  style='' value='".$row[4]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Supplier</button>
+                  </div>";
+             echo"
+
+                   <select name='Estock_e'  class='form-control' required>
+                 <option value='".$row[5]."' Selected>SELECTED -> ".$row[5]." </option>
+           "; 
+                      $xQx=getSupplier();
+                 
+                      while($row1=mysqli_fetch_array($xQx))
 
                       {
-                        echo "
-                        <option value='".$row[0]."' >".$row[1]."</option>
-                        ";
+                        echo '
+                        <option value="'.$row1[0].'" >'.$row1[1].'</option>
+                        ';
                       }
-                 ?>
+            echo "
               
-              </select>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Item</button>
+              </select>                    
+         
+                  </div>   
+          
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Date Purchased</button>
                   </div>
-                  <input type="text" class="form-control"  name="Supplier_e"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Brand</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_f"  required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Model</button>
-                  </div>
-                  <input type="email" class="form-control"  name="Supplier_g"  required>
-      </div>
-    </div>
-  </div>
-
-  
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Description</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_h" >
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Unit Price</button>
-                  </div>
-                  <input type="text" class="form-control"  name="Supplier_i" >
-
-              
-      </div>
-    </div>
-  </div>
+                  <input type='text' class='form-control' name='Estock_f'   style='' value='".$row[6]."'>
+                  </div>                         
     
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Date of Purchase</button>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>End of Warranty</button>
                   </div>
-                  <input type="date" class="form-control"  name="Supplier_j"  >
-
-              
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">End of Warranty</button>
+                  <input type='text' class='form-control' name='Estock_g'   style='' value='".$row[7]."'>
+                  </div>    
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Delivery Date</button>
                   </div>
-                  <input type="date" class="form-control"  name="Supplier_k"  >
+                  <input type='text' class='form-control'  name='Estock_h'  style='' value='".$row[8]."'>
+                  </div>    
 
-              
-      </div>
-    </div>
-    <div class="col-md-4">
-
-    </div>
-  </div>
-
-
-  <div class="row">
-<div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Delivery Date</button>
-                  </div>
-                  <input type="date" class="form-control"  name="Supplier_l"  >
-
-              
-      </div>
-</div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
+               
+                    <div class='row'>
+    <div class='col-md-12'>
     <center>
-              <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Remarks</button>
-              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="Supplier_j"  ></textarea>
+              <button type='button' class='btn btn-block btn-primary btn-flat' style='width:97%; '>Remarks</button>
+              <textarea  style='width:97%; resize: none;' name='Estock_i' rows='5' class='form-control'    >".$row[9]."</textarea>
     </center>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-6">
-         <!--<div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Suppliers Type</button>
-                  </div>
-              <select name="Supplier_k"  class="form-control"  required>
-                <option value=" " Selected> </option>
-                <option value="Potential">Potential</option>
-                <option value="Accredited">Accredited</option>
-         
-              </select>
-                  
-      </div> -->
-    </div>
-    <div class="col-md-3">
-    <!--<div style="margin:10px;">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">isActive</button>
-    </div> -->
-    </div>
-    <div class="col-md-3">
-       <!-- <div class="input-group margin">
-      <center>
-                  <label class="switch">
-                    <input type="checkbox" name="Supplier_l" value="1"  >
-                    <span class="slider"></span>
-                  </label>
-                 
-      </center>
-    </div> -->
-    </div>
-  </div>
+             
+              ";?>
 <br>
  
-  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addSuppliers">Update</button>
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="editStock">Update</button>
   </form>  
 
   <br>
@@ -1464,7 +1113,83 @@ function frm_edit_stocks()
 
 ?>
 
+<?php 
 
+function viewformstockdetails()
+{
+ $x=$_SESSION['viewassetid'];
+    global $conn;
+ $xQx  = "SELECT assetsId,serialName,`code`,(SELECT ig.groupName FROM groups AS ig WHERE ig.groupid=.a.itmTypeId),unitPrice,(SELECT b.supName FROM suppliers AS b WHERE b.supId = a.supId) ,date_purchased,endofWarranty_date,delivery_date,remarks FROM assetstwo AS a  where assetsId='$x'";
+
+ $query=mysqli_query($conn,$xQx);
+ $row=mysqli_fetch_array( $query);
+
+
+      echo "
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Serial Number</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[1]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Code</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[2]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Item Group</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[3]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Unit Price</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[4]."'>
+                  </div>
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Supplier</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[5]."'>
+                  </div>                         
+         
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Date Purchased</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[6]."'>
+                  </div>                         
+    
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>End of Warranty</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[7]."'>
+                  </div>    
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Delivery Date</button>
+                  </div>
+                  <input type='text' class='form-control'   disabled style='' value='".$row[8]."'>
+                  </div>    
+
+               
+                    <div class='row'>
+    <div class='col-md-12'>
+    <center>
+              <button type='button' class='btn btn-block btn-primary btn-flat' style='width:97%; '>Remarks</button>
+              <textarea  style='width:97%; resize: none;' disabled rows='5' class='form-control'  name='Supplier_j'  >".$row[9]."</textarea>
+    </center>
+    </div>
+  </div>
+             
+              ";
+}
+?>
 
 
  <?php 
@@ -1614,37 +1339,63 @@ function frm_add_groups()
 <?php 
 
 
-function frm_add_stocks_a()
+function frm_add_stocks()
 {
 ?>
 <div class="divider"></div>
   <form  role="form" action="LV_submit.php" method="post"   enctype="multipart/form-data" >
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Tag/Code</button>
                   </div>
-                  <input type="text" class="form-control"  name="stock_a"  required>
+                 <?php 
+                 if (!empty($_SESSION['stock_a']))
+                  {
+                    echo ' <input type="text" class="form-control"  name="stock_a"  value="'.$_SESSION['stock_a'].'" required>';
+                  }
+                  else
+                  {
+                    echo ' <input type="text" class="form-control"  name="stock_a"  required>';
+                  }
+                 ?> 
       </div>
     </div>
-    <div class="col-md-4">
+
+    <div class="col-md-6">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">S/N</button>
                   </div>
-                  <input type="text" class="form-control"  name="stock_b"  required>
-      </div>
+           <input type="text" class="form-control"  name="stock_b"  required>
     </div>
-    <div class="col-md-4">
+  </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-12">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Supplier</button>
                   </div>
                 
               <select name="stock_c"  class="form-control" required>
-                 <option value=" " Selected> </option>
+                 <?php 
+                 if (!empty($_SESSION['stock_c']))
+                  {
+                 echo '<option value="'.$_SESSION['stock_c'].'" Selected>'.$_SESSION['stock_c'].' </option>';
+                  }
+                  else
+                  {
+                  echo '<option value=" " Selected> </option>';
+                  }
+
+                 ?>
                  <?php $xQx=getSupplier();
                  
                       while($row=mysqli_fetch_array($xQx))
@@ -1658,7 +1409,7 @@ function frm_add_stocks_a()
               
               </select>
       </div>
-    </div>
+    </div> 
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -1668,7 +1419,17 @@ function frm_add_stocks_a()
                   </div>
                 
               <select name="stock_d"  class="form-control" required>
-                 <option value=" " Selected> </option>
+                  <?php 
+                 if (!empty($_SESSION['stock_d']))
+                  {
+                 echo '<option value="'.$_SESSION['stock_d'].'" Selected>'.$_SESSION['stock_d'].' </option>';
+                  }
+                  else
+                  {
+                  echo '<option value=" " Selected> </option>';
+                  }
+
+                 ?>
                  <?php $xQx=getGroup();
                  
                       while($row=mysqli_fetch_array($xQx))
@@ -1686,75 +1447,31 @@ function frm_add_stocks_a()
   </div>
 
 
-  <div class="row">
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Item</button>
-                  </div>
-                  <input type="text" class="form-control"  name="stock_e"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Brand</button>
-                  </div>
-                  <input type="text" class="form-control"  name="stock_f"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Model</button>
-                  </div>
-                  <input type="text" class="form-control"  name="stock_g"  required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Quantity</button>
-                  </div>
-                  <input type="number" class="form-control"  name="stock_q"  required  pattern="[0-9]">
-      </div>
-    </div>
-
-
-
-  </div>
+ 
 
   
   <div class="row">
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Description</button>
-                  </div>
-                  <input type="text" class="form-control"  name="stock_h" required>
-      </div>
-    </div>
-    <div class="col-md-4">
+    
+    <div class="col-md-12">
       <div class="input-group margin">
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Unit Price</button>
                   </div>
-                  <input type="number" class="form-control"  name="stock_i" required>
+                <?php 
+                 if (!empty($_SESSION['stock_e']))
+                  {
+                    echo ' <input type="text" class="form-control"  name="stock_e"  value="'.$_SESSION['stock_e'].'" required>';
+                  }
+                  else
+                  {
+                    echo ' <input type="text" class="form-control"  name="stock_e"  required>';
+                  }
+                 ?> 
 
               
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Sell Price</button>
-                  </div>
-                  <input type="number" class="form-control"  name="stock_j" required>
-
-              
-      </div>
-    </div>
 
   </div>
     
@@ -1765,7 +1482,16 @@ function frm_add_stocks_a()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Date of Purchase</button>
                   </div>
-                  <input type="date" class="form-control"  name="stock_k"  required>
+                  <?php 
+                 if (!empty($_SESSION['stock_f']))
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_f"  value="'.$_SESSION['stock_f'].'" required>';
+                  }
+                  else
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_f"  required>';
+                  }
+                 ?> 
 
               
       </div>
@@ -1775,7 +1501,16 @@ function frm_add_stocks_a()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">End of Warranty</button>
                   </div>
-                  <input type="date" class="form-control"  name="stock_l"  required>
+                   <?php 
+                 if (!empty($_SESSION['stock_g']))
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_g"  value="'.$_SESSION['stock_g'].'" required>';
+                  }
+                  else
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_g"  required>';
+                  }
+                 ?> 
 
               
       </div>
@@ -1785,56 +1520,49 @@ function frm_add_stocks_a()
                   <div class="input-group-btn">
                     <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Delivery Date</button>
                   </div>
-                  <input type="date" class="form-control"  name="stock_m" required >
+                     <?php 
+                 if (!empty($_SESSION['stock_h']))
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_h"  value="'.$_SESSION['stock_h'].'" required>';
+                  }
+                  else
+                  {
+                    echo ' <input type="date" class="form-control"  name="stock_h"  required>';
+                  }
+                 ?> 
 
               
       </div>
     </div>
+
   </div>
+
   <div class="row">
     <div class="col-md-12">
     <center>
               <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Remarks</button>
-              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="stock_n" required></textarea>
+
+                   <?php 
+                 if (!empty($_SESSION['stock_i']))
+                  {
+                    echo ' <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="stock_i" required>'.$_SESSION['stock_i'].'</textarea>';
+                  }
+                   else
+                  {
+                    echo ' <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="stock_i" required></textarea>';
+                  }
+                  ?>
+              
     </center>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-         <!--<div class="input-group margin">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Suppliers Type</button>
-                  </div>
-              <select name="Supplier_k"  class="form-control"  required>
-                <option value=" " Selected> </option>
-                <option value="Potential">Potential</option>
-                <option value="Accredited">Accredited</option>
-         
-              </select>
-                  
-      </div> -->
-    </div>
-    <div class="col-md-3">
-    <!--<div style="margin:10px;">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">isActive</button>
-    </div> -->
-    </div>
-    <div class="col-md-3">
-       <!-- <div class="input-group margin">
-      <center>
-                  <label class="switch">
-                    <input type="checkbox" name="Supplier_l" value="1"  >
-                    <span class="slider"></span>
-                  </label>
-                 
-      </center>
-    </div> -->
-    </div>
-  </div>
+  
 <br>
  
   <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="addstocks">Save</button>
+    <span   style="float:right;opacity:0; padding:0px 20px;">&nbsp;</span>
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="copysave">Copy & Save</button>
   </form>  
 
   <br>

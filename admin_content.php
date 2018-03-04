@@ -22,7 +22,37 @@
 
 ?>
     <?php
-    if(isset($_GET['x']))
+    if (isset($_GET['x']) && (strpos($_GET['x'], 'STOCK') !== false) )
+    {
+
+        $x1=count($sub_sidebar_label);
+          for ($j=0; $j < $x1 ; $j++) 
+          { 
+           
+          
+              if(($_GET['x']) == $sub_sidebar_label[$j])
+              {
+              $y="LV_".$sub_sidebar_label[$j].".php";
+              include($y);
+              }
+          }
+    }
+    elseif (isset($_GET['x']) && (strpos($_GET['x'], 'INVOICE') !== false) )
+    {
+
+        $x1=count($sub_sidebar_label1);
+          for ($j=0; $j < $x1 ; $j++) 
+          { 
+           
+          
+              if(($_GET['x']) == $sub_sidebar_label1[$j])
+              {
+              $y="LV_".$sub_sidebar_label1[$j].".php";
+              include($y);
+              }
+          }
+    }
+    elseif(isset($_GET['x']) )
     {
       
       for ($i=0; $i < $x ; $i++) 
@@ -35,7 +65,10 @@
           include($y);
           }
       }
+      
+
     }
+    
     else
     {
       

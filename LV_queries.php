@@ -92,26 +92,22 @@ function getGroup()
 }   
 
 
-
-
-function addSupplier($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)
+function addSupplier($a,$b,$c,$d,$e,$f,$g,$h,$i,$j)
 {
     global $conn;
     $xQx = "INSERT INTO suppliers(";
     $xQx .= "supName,";
-    $xQx .= "busTypeId,";
     $xQx .= "contactPerson,";
+    $xQx .= "busTypeId,";
     $xQx .= "address,";
     $xQx .= "telno,";
     $xQx .= "faxno,";
     $xQx .= "email,";
-    $xQx .= "approved_by,";
-    $xQx .= "date_approved,";
     $xQx .= "remarks,";
     $xQx .= "typeOfSup,";
     $xQx .= "isActive) ";
     $xQx .=" VALUES (";
-    $xQx .=" '$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','$l' ) ";
+    $xQx .=" '$a','$b','$c','$d','$e','$f','$g','$h','$i','$j' ) ";
     $query=mysqli_query($conn,$xQx);
     return  $query;
 }
@@ -135,10 +131,31 @@ function addinvoice($a,$b,$c,$d,$e,$f,$g)
 }
 
 
+function getstocktable()
+{
+   global $conn;
+ $xQx  = " SELECT itmTypeId,COUNT(itmTypeId),unitPrice";
+ $xQx .= " FROM assetstwo ";
+ $xQx .= "  GROUP BY  itmTypeId ";
+ $query=mysqli_query($conn,$xQx);
+  return  $query;
+
+}
 
 
 
-function addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$q,$o)
+function getstocktableindividual()
+{
+   global $conn;
+ $xQx  = "SELECT assetsId,serialName,`code`,(SELECT ig.groupName FROM groups AS ig WHERE ig.groupid=.a.itmTypeId),unitPrice,(SELECT b.supName FROM suppliers AS b WHERE b.supId = a.supId) ,date_purchased,endofWarranty_date,delivery_date,remarks
+FROM assetstwo AS a ";
+
+ $query=mysqli_query($conn,$xQx);
+  return  $query;
+
+}
+
+function addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i)
 {
     global $conn;
     $xQx = "INSERT INTO assetstwo(";
@@ -146,20 +163,13 @@ function addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$q,$o)
     $xQx .= "serialName,";
     $xQx .= "supId,";
     $xQx .= "itmTypeId,";
-    $xQx .= "assetName,";
-    $xQx .= "brand,";
-    $xQx .= "model,";
-    $xQx .= "description,";
     $xQx .= "unitPrice,";
-    $xQx .= "sellPrice,";
     $xQx .= "date_purchased,";
     $xQx .= "endofWarranty_date,";
     $xQx .= "delivery_date,";
-    $xQx .= "remarks,";
-    $xQx .= "quantity,"; 
-    $xQx .= "isDeleted)";
+    $xQx .= "remarks )";
     $xQx .=" VALUES (";
-    $xQx .=" '$a','$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','$l','$m','$n','$q','$o')";
+    $xQx .=" '$a','$b','$c','$d','$e','$f','$g','$h','$i')";
     $query=mysqli_query($conn,$xQx);
     return  $query;
 }
@@ -178,6 +188,23 @@ function addgroup($a,$b)
 
 
 
+function editStock($a,$b,$c,$d,$e,$f,$g,$h,$i,$z)
+{
+  global $conn;
+  $xQx = "UPDATE assetstwo ";
+  $xQx .= "SET serialName = '$a', ";
+  $xQx .= "`code` = '$b', ";
+  $xQx .= "itmTypeId = '$c', ";
+  $xQx .= "unitPrice = '$d', ";
+  $xQx .= "supId = '$e', ";
+  $xQx .= "date_purchased = '$f', ";
+  $xQx .= "endofWarranty_date = '$g', ";
+  $xQx .= "delivery_date = '$h', ";
+  $xQx .= "remarks = '$i' ";
+  $xQx .=  "WHERE assetsId='$z' ";
+  $query=mysqli_query($conn,$xQx);
+  return  $query;
+}
 
 
 
@@ -229,23 +256,21 @@ function getEdit_Supplier($a)
   return  $query;
 
 }
-function updSupplier($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m)
+function updSupplier($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k)
 {
   global $conn;
   $xQx = "UPDATE suppliers ";
   $xQx .= "SET supName='$a', ";
-  $xQx .= "busTypeId='$j', ";
   $xQx .= "contactPerson='$b', ";
-  $xQx .= "address='$e', ";
-  $xQx .= "telno='$c', ";
-  $xQx .= "faxno='$d', ";
-  $xQx .= "email='$f', ";
-  $xQx .= "approved_by='$k', ";
-  $xQx .= "date_approved='$l', ";
+  $xQx .= "busTypeId='$c', ";
+  $xQx .= "address='$d', ";
+  $xQx .= "telno='$e', ";
+  $xQx .= "faxno='$f', ";
+  $xQx .= "email='$g', ";
   $xQx .= "remarks='$h', ";
-  $xQx .= "typeOfSup='$g', ";
-  $xQx .= "isActive='$i' ";
-  $xQx .= "WHERE supId = '$m'";
+  $xQx .= "typeOfSup='$i', ";
+  $xQx .= "isActive='$j' ";
+  $xQx .= "WHERE supId = '$k'";
   $query=mysqli_query($conn,$xQx);
   return  $query;
 }

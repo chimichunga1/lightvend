@@ -1,7 +1,7 @@
 <div class="wrapper" style="background-color:transparent;">
 
-<div><p>MANAGE SUPPLIERS</p></div>
-<br>
+<div><p>MANAGE STOCK DETAILS</p></div>
+
 <style>
  th, td { white-space: nowrap; }
     div.dataTables_wrapper {
@@ -53,7 +53,6 @@
 
 input:checked + .slider {
   background-color: #2196F3;
-
 }
 
 input:focus + .slider {
@@ -89,28 +88,33 @@ input::-webkit-inner-spin-button {
 }
 
 </style>
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> 
+     
 <script>
 $(document).ready(function(){
-    $('#ManageSupplier').DataTable({
+    $('#ManageStocksv2').DataTable({
         
-      
+    
 
       "aoColumns": [
           null,
           null,
           null,
-          { "orderSequence": [ "" ] }
+          null,
+       
+          
+           { "orderSequence": [ "" ] }
+        
         
       ]
   } );
     
 
-    $("#addbtn").click(function(){
-        $("#panel").slideToggle("slow");
+    $("#addbtn_stocks").click(function(){
+        $("#panel_stocks").slideToggle("slow");
     });
 
+
+ 
 
 });
 
@@ -120,15 +124,22 @@ $(document).ready(function(){
 
     
 
+   
+    
+
+
+
     <div class="rows">
-            <div class="col-md-12" id="addbtn">
+            <div class="col-md-12" id="addbtn_stocks">
                 <button type="button"  class="btn btn-block btn-success btn-flat">ADD</button>
             </div>
     </div>
 
-<div id="panel">
+<div id="panel_stocks" style="display: none;">
+<br><br>
 <?php
-frm_add_supplier();
+
+frm_add_stocks();
 ?>
 </div>
 
@@ -137,7 +148,7 @@ frm_add_supplier();
 <br>
 
 <?php
-tbl_supplier();
+tbl_stocks_v2();
 ?>
 
 

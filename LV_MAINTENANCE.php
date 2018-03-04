@@ -9,7 +9,7 @@
 
 <div class="container">
 
-<div class="col-md-11">         
+<div class="col-md-12">         
 
 
     <button class="btn btn-primary col-md-11" type="button" data-toggle="collapse" data-target="#busType" aria-expanded="false" aria-controls="busType">
@@ -81,7 +81,7 @@
 
 
 
-<div class="col-md-11">         
+<div class="col-md-12">         
 
 <p></p>
     <button class="btn btn-primary col-md-11" type="button" data-toggle="collapse" data-target="#categType" aria-expanded="false" aria-controls="categType">

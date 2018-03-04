@@ -5,7 +5,7 @@ if(!isset($_POST['id']))
 	
 ?>
     <script>   
-    window.location.href="admin.php?x=SALES%20INVOICES";
+    window.location.href="admin.php?x=NEW%20INVOICE";
     </script>
 <?PHP
 }
