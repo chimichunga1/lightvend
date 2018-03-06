@@ -177,7 +177,7 @@ $f = $_POST['invoice_f'];
                       }
 
 
-$xQx = "INSERT INTO invoices(invoiceStatId , clientId, clientName, busTypeId, bustypeName, date_created ,due_date ,remarks ,isDeleted)VALUES ('$a','$b','$get_cname','$c','$get_bname','$d','$e','$f','0')";
+$xQx = "INSERT INTO invoices(invoiceStatId , clientId, clientName, busTypeId, bustypeName, date_created ,due_date ,remarks ,isDeleted,Status)VALUES ('$a','$b','$get_cname','$c','$get_bname','$d','$e','$f','0','0')";
         $query=mysqli_query($conn,$xQx);
     }
 //-----------------------------------------------
@@ -589,6 +589,13 @@ if(isset($_POST["payout"]))
 {
     echo "tite";
 }
+
+
+
+
+
+
+
 
 
 
