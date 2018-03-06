@@ -1,3 +1,6 @@
+
+
+
 <div class="wrapper" style="background-color:transparent;">
 
 
@@ -129,19 +132,55 @@ $(document).ready(function(){
 
 </div>
 
-
-
 <?php 
-if(!isset($_POST["id"]))
+if(isset($_POST["invoice_paid"]))
+
 {
-session_start();
+      
+
+    $get_value = $_POST["invoice_paid"];
+
+$xQx_update = "UPDATE invoices SET Status = '2' WHERE invoiceId = '$get_value'";
+ $query_update=mysqli_query($conn,$xQx_update);
+
+
+?>
+
+
+
+
+    <?php 
+
+
+
+
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(!isset($_POST["invoice_paid"]))
+{
+
 ?>
     <script>   
     window.location.href="admin.php?x=SALES%20INVOICES";
     </script>
 <?php
 }
-$invoice_id = $_POST["id"];
+$invoice_id = $_POST["invoice_paid"];
 $_SESSION["get_invoiceId"] = $invoice_id;
 
  $xQx_get_details = "SELECT * FROM invoices WHERE invoiceId = $invoice_id AND isDeleted = '0'";
@@ -402,10 +441,10 @@ else
                 <td><?php
 
                  
-                $tot=array_sum($sp);
+               /* $tot=array_sum($sp);*/
 
 
-                  echo   $totx =  $tot + ($tot* $tax_value);
+      /*            echo   $totx =  $tot + ($tot* $tax_value);*/
 
                 ?></td>
 

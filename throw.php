@@ -65,6 +65,10 @@ $xQx_update = "UPDATE invoices SET Status = '2' WHERE invoiceId = '$get_value'";
 
 ?>
 
+
+
+
+
     <script>   
     window.location.href="admin.php?x=GENERATED%20INVOICE";
     </script>

@@ -1235,16 +1235,11 @@ function tbl_invoice_generated()
 
 
             <div class="col-md-4">
-          <form action="throw.php" method="post">
-
-            <input type="hidden" name="invoice_paid"  value="'.$PayoutModal.'" >
-
+          <form action="admin.php?x=PAYOUT" method="post">
             <button type="submit" class="btn btn-block btn-yellow btn-flat"><i class="fa fa-money"></i></button></center> 
-
-          
-
-
+            <input type="hidden" name="invoice_paid"  value="'.$PayoutModal.'" >
             </form>
+
 
 </div>
 
