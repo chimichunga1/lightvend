@@ -298,7 +298,7 @@ function frm_edit_supplier()
     $xQx=getEdit_Supplier($_SESSION['editsupid']);
     while($row=mysqli_fetch_array($xQx))
     {
-        echo "<input type='text' class='form-control' id='SupId' name='Supplier_k'  style='position:absolute;z-index:-1;opacity:0;' value='".$row[12]."'>";
+        echo "<input type='text' class='form-control' id='SupId' name='eSupplier_k'  style='position:absolute;z-index:-1;opacity:0;' value='".$row[12]."'>";
     ?>
 
     <div class="row">
@@ -307,7 +307,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px" >Suppliers Name</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_a'  value='".$row[0]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='eSupplier_a'  value='".$row[0]."'>"; ?>
 
         </div>
         </div>
@@ -318,7 +318,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Contact Person</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_b'  value='".$row[1]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='eSupplier_b'  value='".$row[1]."'>"; ?>
         </div>
         </div>
     </div>
@@ -330,7 +330,7 @@ function frm_edit_supplier()
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Business Type</button>
                     </div>
                     
-                <select name="Supplier_c"  class="form-control" >
+                <select name="eSupplier_c"  class="form-control" >
                     <?php 
                       
                           $xQx=getSup_BusType($row[9]);
@@ -364,7 +364,7 @@ function frm_edit_supplier()
                 <div class="input-group-btn">
                 <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Address</button>
                 </div>
-                <?php echo " <input type='text' class='form-control'  name='Supplier_d'  value='".$row[4]."'>"; ?>
+                <?php echo " <input type='text' class='form-control'  name='eSupplier_d'  value='".$row[4]."'>"; ?>
         </div>
         </div>
     </div>
@@ -376,7 +376,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Telephone No</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_e'  value='".$row[2]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='eSupplier_e'  value='".$row[2]."'>"; ?>
         </div>
         </div>
         <div class="col-md-6">
@@ -384,7 +384,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Fax No</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_f'  value='".$row[3]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='eSupplier_f'  value='".$row[3]."'>"; ?>
         </div>
         </div>
     </div>
@@ -394,7 +394,7 @@ function frm_edit_supplier()
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Email</button>
                     </div>
-                    <?php echo " <input type='text' class='form-control'  name='Supplier_g'  value='".$row[5]."'>"; ?>
+                    <?php echo " <input type='text' class='form-control'  name='eSupplier_g'  value='".$row[5]."'>"; ?>
         </div>
         </div>
     </div>
@@ -407,7 +407,7 @@ function frm_edit_supplier()
         <div class="col-md-12">
         <center>
                 <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Remarks</button>        
-                <?php echo" <textarea  style='width:98%; resize: none;' rows='5' class='form-control'  name='Supplier_h'  >".$row[7]." </textarea>"; ?>
+                <?php echo" <textarea  style='width:98%; resize: none;' rows='5' class='form-control'  name='eSupplier_h'  >".$row[7]." </textarea>"; ?>
         </center>
         </div>
     </div>
@@ -420,7 +420,7 @@ function frm_edit_supplier()
                     </div>
                 
 
-                    <select name="Supplier_i"  class="form-control"  >
+                    <select name="eSupplier_i"  class="form-control"  >
                     <?php echo " <option value='".$row[6]."' Selected>SELECTED -> ".$row[6]."</option>"?>
                         <option value=" "> </option>
                         <option value="Potential">Potential</option>
@@ -443,11 +443,29 @@ function frm_edit_supplier()
                     <?php 
                     if($row[8]=='1')
                     {
-                       ?> <input type="checkbox" data-width="98%" checked   name="Supplier_j" value="1"  data-height="20" data-toggle="toggle"  data-on="Active" data-off="Not Active"><?php
+                       ?>
+
+                      <select name="eSupplier_j"  class="form-control"  >
+                   
+                        
+                        <option value="1" selected>Active</option>
+                        <option value="0" >Not Active</option>
+                
+                    </select>
+
+                       <?php
                     }
                     else
                     {
-                      ?> <input type="checkbox" data-width="98%" name="Supplier_j"   data-height="20" data-toggle="toggle" value="1" data-on="Active" data-off="Not Active"><?php
+                      ?>
+                     <select name="eSupplier_j"  class="form-control"  >
+                   
+                        
+                        <option value="1">Active</option>
+                        <option value="0" selected>Not Active</option>
+                
+                    </select>
+                      <?php
                     }
                     ?>
                         
@@ -991,7 +1009,7 @@ function frm_edit_stocks()
 <?php
   $x=  $_SESSION['editassetid'];
     global $conn;
- $xQx  = "SELECT assetsId,serialName,`code`,(SELECT ig.groupName FROM groups AS ig WHERE ig.groupid=.a.itmTypeId),unitPrice,(SELECT b.supName FROM suppliers AS b WHERE b.supId = a.supId) ,date_purchased,endofWarranty_date,delivery_date,remarks FROM assetstwo AS a  where assetsId='$x'";
+ $xQx  = "SELECT assetsId,serialName,`code`,itmTypeId,unitPrice,supId ,date_purchased,endofWarranty_date,delivery_date,remarks FROM assetstwo AS a  where assetsId='$x'";
 
  $query=mysqli_query($conn,$xQx);
  $row=mysqli_fetch_array( $query);
@@ -1016,8 +1034,13 @@ function frm_edit_stocks()
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Item Group</button>
                   </div>";
+
+                 $ig=mysqli_fetch_array(mysqli_query($conn,"SELECT groupName from groups where groupid='".$row[3]."'"));
+
                        echo "  <select name='Estock_c'  class='form-control' required>
-                 <option value='".$row[3]."' Selected>SELECTED -> ".$row[3]." </option>";
+
+
+                 <option value='".$row[3]."' Selected>SELECTED -> ".$ig[0]." </option>";
                    $xQx=getGroup();
                  
                       while($row2=mysqli_fetch_array($xQx))
@@ -1048,10 +1071,13 @@ function frm_edit_stocks()
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Supplier</button>
                   </div>";
+
+
+                 $sup1=mysqli_fetch_array(mysqli_query($conn,"SELECT supName from suppliers where supId='".$row[5]."'"));
              echo"
 
                    <select name='Estock_e'  class='form-control' required>
-                 <option value='".$row[5]."' Selected>SELECTED -> ".$row[5]." </option>
+                 <option value='".$row[5]."' Selected>SELECTED -> ".$sup1[0]." </option>
            "; 
                       $xQx=getSupplier();
                  
@@ -1102,9 +1128,12 @@ function frm_edit_stocks()
 <br>
  
   <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="editStock">Update</button>
+  <span style="float:right;opacity:0; padding:0px 20px;">&nbsp;</span>
+  <button type="submit" class="btn  btn-success btn-flat"  style="float:right;" name="updateSave">Copy</button>
+
   </form>  
 
-  <br>
+ <br>
   <br>
   <div class="divider"></div>
     <?php 
@@ -1285,40 +1314,46 @@ function frm_add_groups()
     </div>
   </div>
 
-
-
-
+ <div class="row">
+    <div class="col-md-12">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Maintaining Stock</button>
+                  </div>
+                  <input type="text" class="form-control"  name="groupb"  required>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-md-6">
-         <!--<div class="input-group margin">
+    <div class="col-md-12">
+      <div class="input-group margin">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Suppliers Type</button>
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Model Name</button>
                   </div>
-              <select name="Supplier_k"  class="form-control"  required>
-                <option value=" " Selected> </option>
-                <option value="Potential">Potential</option>
-                <option value="Accredited">Accredited</option>
-         
-              </select>
-                  
-      </div> -->
+                  <input type="text" class="form-control"  name="groupc"  required>
+      </div>
     </div>
-    <div class="col-md-3">
-    <!--<div style="margin:10px;">
-                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">isActive</button>
-    </div> -->
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group margin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-block btn-primary btn-flat size-125px">Brand Name</button>
+                  </div>
+                  <input type="text" class="form-control"  name="groupd"  required>
+      </div>
     </div>
-    <div class="col-md-3">
-       <!-- <div class="input-group margin">
-      <center>
-                  <label class="switch">
-                    <input type="checkbox" name="Supplier_l" value="1"  >
-                    <span class="slider"></span>
-                  </label>
-                 
-      </center>
-    </div> -->
+  </div>
+
+
+   <div class="row">
+    <div class="col-md-12">
+    <center>
+              <button type="button" class="btn btn-block btn-primary btn-flat" style="width:98%; ">Specification</button>
+              <textarea  style="width:98%; resize: none;" rows="5" class="form-control"  name="groupe"  required></textarea>
+    </center>
     </div>
   </div>
 <br>

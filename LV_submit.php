@@ -68,7 +68,25 @@ $xQx = "INSERT INTO suppliers(supName, contactPerson, busTypeId, address, telno,
 <?php
 }
 
-
+if (isset($_POST['editSuppliers']))
+{
+//-----------------------------------------------
+   
+    if(empty($_POST['eSupplier_j']))
+    {
+         updSupplier($_POST['eSupplier_a'],$_POST['eSupplier_b'],$_POST['eSupplier_c'],$_POST['eSupplier_d'],$_POST['eSupplier_e'],$_POST['eSupplier_f'],$_POST['eSupplier_g'],$_POST['eSupplier_h'],$_POST['eSupplier_i'],'0',$_POST['eSupplier_k']);
+    }
+    else
+    {
+        updSupplier($_POST['eSupplier_a'],$_POST['eSupplier_b'],$_POST['eSupplier_c'],$_POST['eSupplier_d'],$_POST['eSupplier_e'],$_POST['eSupplier_f'],$_POST['eSupplier_g'],$_POST['eSupplier_h'],$_POST['eSupplier_i'],'1',$_POST['eSupplier_k']);    
+    }
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=SUPPLIERS";
+    </script>
+<?php
+}
 
 
 
@@ -204,25 +222,7 @@ delSupplier($_POST['supId']);
 }
 
 
-if (isset($_POST['editSuppliers']))
-{
-//-----------------------------------------------
 
-    if(empty($_POST['Supplier_j']))
-    {
-         updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],'0',$_POST['Supplier_k']);
-    }
-    else
-    {
-        updSupplier($_POST['Supplier_a'],$_POST['Supplier_b'],$_POST['Supplier_c'],$_POST['Supplier_d'],$_POST['Supplier_e'],$_POST['Supplier_f'],$_POST['Supplier_g'],$_POST['Supplier_h'],$_POST['Supplier_i'],$_POST['Supplier_j'],$_POST['Supplier_k']);    
-    }
-//-----------------------------------------------
-    ?>
-    <script>   
-    window.location.href="admin.php?x=SUPPLIERS";
-    </script>
-<?php
-}
 
 if (isset($_POST['addClient']))
 {
@@ -299,17 +299,45 @@ echo '   <script>
 if (isset($_POST['addGroups']))
 {
 //-----------------------------------------------
-    if(empty($_POST['groupa']))
+
+
+
+    if(!empty($_POST['groupa']))
     {
+        $a=$_POST['groupa'];
+        $b=$_POST['groupb'];
+        $c=$_POST['groupc'];
+        $d=$_POST['groupd'];
+        $e=$_POST['groupe'];
+        $f='0';
+
+         addgroup($a,$b,$c,$d,$e,$f)  ;
     
     }
-    else
-    {
-  
-         echo $_POST['groupa'];
-         addgroup($_POST['groupa'],'0');   
 
-    }
+//-----------------------------------------------
+    ?>
+    <script>   
+    window.location.href="admin.php?x=GROUP";
+    </script>
+<?php
+}
+
+if (isset($_POST['editGroups']))
+{
+//-----------------------------------------------
+
+
+        $a=$_POST['egroupa'];
+        $b=$_POST['egroupb'];
+        $c=$_POST['egroupc'];
+        $d=$_POST['egroupd'];
+        $e=$_POST['egroupe'];
+        $f=$_POST['egroupid'];
+
+         editgroup($a,$b,$c,$d,$e,$f)  ;
+
+
 //-----------------------------------------------
     ?>
     <script>   
@@ -420,7 +448,25 @@ $catType = $_POST["catType"];
 
 
 
+if (isset($_POST['updateSave']))
 
+{
+$_SESSION['stock_a'] = $a = $_POST["Estock_b"]; //tag
+$_SESSION['stock_b'] = $b = "";
+$_SESSION['stock_c'] = $c = $_POST["Estock_e"];
+$_SESSION['stock_d'] = $d = $_POST["Estock_c"];
+$_SESSION['stock_e'] = $e = $_POST["Estock_d"];
+$_SESSION['stock_f'] = $f = $_POST["Estock_f"];
+$_SESSION['stock_g'] = $g = $_POST["Estock_g"];
+$_SESSION['stock_h'] = $h = $_POST["Estock_h"];
+$_SESSION['stock_i'] = $i = $_POST["Estock_i"];
+
+    ?>
+  <script>   
+    window.location.href="admin.php?x=STOCK DETAILS";
+    </script>
+    <?php
+}
 
 
 if (isset($_POST['copysave']))
@@ -432,7 +478,7 @@ if (isset($_POST['copysave']))
 
 
 $_SESSION['stock_a'] = $a = $_POST["stock_a"];
-$_SESSION['stock_b'] = $b = $_POST["stock_b"];
+$_SESSION['stock_b'] = $b = "";
 $_SESSION['stock_c'] = $c = $_POST["stock_c"];
 $_SESSION['stock_d'] = $d = $_POST["stock_d"];
 $_SESSION['stock_e'] = $e = $_POST["stock_e"];

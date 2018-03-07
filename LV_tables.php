@@ -172,6 +172,7 @@ function tbl_stocks()
               <tr>
                   <th>Item Group</th>
                   <th>Quantity</th>
+                  <th>Critical</th>
                   <th>Unit Price</th>
               </tr>
           </thead>
@@ -190,6 +191,7 @@ function tbl_stocks()
               <td>$row[0]</td>
               <td>$row[1]</td>
               <td>$row[2]</td>
+              <td>$row[3]</td>
           
          
 </tr>
@@ -369,10 +371,11 @@ function tbl_groups()
 {
   ?>
 <!--   <table id="ManageSupplier" class="display" cellspacing="0" width="100%"> -->
-  <table id="ManageStocks" class="ui celled table" cellspacing="0" width="100%">
+  <table id="Managegroups" class="ui celled table" cellspacing="0" width="100%">
           <thead>
               <tr>
                   <th>GroupName</th>
+                  <th>Critical</th>
                   <th>Actions</th>
 
               </tr>
@@ -385,27 +388,28 @@ function tbl_groups()
 
           while($row=mysqli_fetch_array($xQx))
             {
-/*              $SeeModal="SeeModal".$row[0];*/
+              $SeeModal="SeeModal".$row[0];
               $EditModal="EditModal".$row[0];
               $DeleteModal="DeleteModal".$row[0];
               echo" 
               <tr>
               <td>$row[1]</td>
+              <td>$row[5]</td>
 <td>
                           
               <div class='row'>
-     
+         <div class='col-md-4'>
               ";
               ?>
             <?php
-/*            echo '
-            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#'.$SeeModal.'"><i class="fa fa-eye"></i></button></center>
-            ';*/
+            echo '
+            <button type="button" class="btn btn-block btn-info btn-flat" data-toggle="modal" data-target="#'.$SeeModal.'"><i class="fa fa-eye"></i></button></center></div>
+            ';
             ?>
             <?php
               echo "
         
-              <div class='col-md-6'>
+              <div class='col-md-4'>
               ";
               ?>
             <?php
@@ -416,7 +420,7 @@ function tbl_groups()
             <?php
               echo "
               </div>
-              <div class='col-md-6'>";
+              <div class='col-md-4'>";
               ?>
             <?php
             echo '
@@ -429,7 +433,7 @@ function tbl_groups()
               </div>
               </td>
               </tr>";
-/*  echo "   
+  echo "   
   <div id='".$SeeModal."' class='modal fade'>
     <div class='modal-dialog'>
       <div class='modal-content'>
@@ -440,9 +444,31 @@ function tbl_groups()
         <div class='modal-body'>
               <div class='row'>
               ";
-              $tag=array('','Supplier Name','Contact Person','Telephone No.','Fax No.','Email','Type Of Supplier');
+              $tag=array('','Group Name','Model Name',' Brand Name','Specification','Critical Stock');
 
-              for ($i=1; $i <=6 ; $i++) { 
+              for ($i=1; $i <=5 ; $i++) { 
+
+
+                if ($i==4)
+                {
+                    
+
+
+                    echo "
+                     <div class='row'>
+                      <div class='col-md-12'>
+                      <center>
+                                <button type='button' class='btn btn-block btn-primary btn-flat' style='width:98%; '>".$tag[$i]."</button>
+                                <textarea  style='width:98%; resize: none;' rows='5' class='form-control' disabled >".$row[$i]."</textarea>
+                      </center>
+                      </div>
+                    </div>
+
+                    ";
+                }
+                else
+                {
+
                   echo "
                   <div class='input-group margin'>
                   <div class='input-group-btn'>
@@ -450,7 +476,8 @@ function tbl_groups()
                   </div>
                   <input type='text' class='form-control'   disabled style='' value='".$row[$i]."'>
                   </div>
-              ";
+                  ";
+                }
               }
             
 
@@ -466,7 +493,7 @@ function tbl_groups()
       </div>
     </div>
   </div>";
-*/
+
   echo "   
   <div id='".$EditModal."' class='modal fade'>
     <div class='modal-dialog modal-lg '>
@@ -476,12 +503,67 @@ function tbl_groups()
           <h4 class='modal-title'>INFORMATION </h4>
         </div>
         <div class='modal-body'>
+
+        <form action='LV_submit.php' method='POST'>
   ";
 
+           $tag=array('','Group Name','Model Name',' Brand Name','Specification','Critical Stock');
+           $name=array('egroupid','egroupa','egroupb',' egroupc','egroupd','egroupe');
 
+              for ($i=0; $i <=5 ; $i++) { 
+
+
+                if($i==0)
+                {
+                  echo "
+                  <div class='input-group margin' style='display:none;'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>".$tag[$i]."</button>
+                  </div>
+                  <input type='text' class='form-control'  name='".$name[$i]."'  style='' value='".$row[$i]."'>
+                  </div>
+                  ";
+                }
+                elseif ($i==4)
+                {
+                    
+
+
+                    echo "
+                     <div class='row'>
+                      <div class='col-md-12'>
+                      <center>
+                                <button type='button' class='btn btn-block btn-primary btn-flat' style='width:98%; '>".$tag[$i]."</button>
+                                <textarea  style='width:98%; resize: none;' rows='5' name='".$name[$i]."' class='form-control'  >".$row[$i]."</textarea>
+                      </center>
+                      </div>
+                    </div>
+
+                    ";
+                }
+                else
+                {
+
+                  echo "
+                  <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>".$tag[$i]."</button>
+                  </div>
+                  <input type='text' class='form-control' name='".$name[$i]."'   style='' value='".$row[$i]."'>
+                  </div>
+                  ";
+                }
+              }
+            
 
   echo "
         
+        <br>
+
+         <button type='submit' class='btn  btn-success btn-flat'  style='float:right;' name='editGroups'>Save</button>
+            <br>
+               <br>
+  </form>
         </div>
       </div>
     </div>

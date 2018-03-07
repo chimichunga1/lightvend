@@ -98,10 +98,6 @@ $(document).ready(function(){
       "aoColumns": [
           null,
           null,
-          null,
-          null,
-          null,
-          null,
           { "orderSequence": [ "" ] }
         
       ]

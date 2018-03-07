@@ -83,8 +83,7 @@ function getsupname($supId)
 function getGroup()
 {
   global $conn;
-  $xQx = "SELECT groupid, ";
-  $xQx .= "groupName ";
+  $xQx = "SELECT * ";
   $xQx .= "FROM groups ";
   $xQx .= "WHERE isDeleted = 0";
   $query=mysqli_query($conn,$xQx);
@@ -134,14 +133,14 @@ function addinvoice($a,$b,$c,$d,$e,$f,$g)
 function getstocktable()
 {
    global $conn;
- $xQx  = " SELECT itmTypeId,COUNT(itmTypeId),unitPrice";
- $xQx .= " FROM assetstwo ";
- $xQx .= "  GROUP BY  itmTypeId ";
+ $xQx  = " SELECT itmTypeId,COUNT(itmTypeId),g.critical,unitPrice FROM assetstwo AS a LEFT JOIN groups AS g  ON a.itmTypeId=g.groupid GROUP BY  itmTypeId";
+
  $query=mysqli_query($conn,$xQx);
   return  $query;
 
 }
 
+ 
 
 
 function getstocktableindividual()
@@ -173,18 +172,37 @@ function addstocks($a,$b,$c,$d,$e,$f,$g,$h,$i)
     $query=mysqli_query($conn,$xQx);
     return  $query;
 }
-function addgroup($a,$b)
+
+function  addgroup($a,$b,$c,$d,$e,$f)  
 {
     global $conn;
     $xQx = "INSERT INTO groups(";
     $xQx .= "groupName,";
+    $xQx .= "critical,";
+    $xQx .= "groupmodel,";
+    $xQx .= "groupbrand,";
+    $xQx .= "groupspec,";
     $xQx .= "isDeleted) ";
     $xQx .=" VALUES (";
-    $xQx .=" '$a','$b') ";
+    $xQx .=" '$a','$b','$c','$d','$e','$f') ";
     $query=mysqli_query($conn,$xQx);
     return  $query;
 }
 
+function  editgroup($a,$b,$c,$d,$e,$f)  
+{
+    global $conn;
+    $xQx = "UPDATE groups SET ";
+    $xQx .= "groupName = '$a', ";
+    $xQx .= "groupmodel = '$b', ";
+    $xQx .= "groupbrand = '$c', ";
+    $xQx .= "groupspec = '$d', ";
+    $xQx .= "`critical` = '$e' ";
+    $xQx .=" WHERE ";
+    $xQx .=" groupid = '$f' ";
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+}
 
 
 
@@ -207,6 +225,30 @@ function editStock($a,$b,$c,$d,$e,$f,$g,$h,$i,$z)
 }
 
 
+
+
+
+
+function amoreStock($a,$b,$c,$d,$e,$f,$g,$h,$i)
+{
+
+  global $conn;
+    $xQx = "INSERT INTO assetstwo(";
+    $xQx .= "serialName,"; 
+    $xQx .= "code,";
+    $xQx .= "itmTypeId,";
+    $xQx .= "unitPrice,";
+    $xQx .= "supId,";
+    $xQx .= "date_purchased,";
+    $xQx .= "endofWarranty_date,";
+    $xQx .= "delivery_date,";
+    $xQx .= "remarks )";
+    $xQx .=" VALUES (";
+    $xQx .=" '$a','$b','$c','$d','$e','$f','$g','$h','$i')";
+    $query=mysqli_query($conn,$xQx);
+    return  $query;
+
+}
 
 
 
