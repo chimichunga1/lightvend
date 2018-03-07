@@ -455,11 +455,11 @@ function getEdit_Clients($a)
 function getItems()
 {
   global $conn;
-  $xQx = "SELECT assetsId,";
-  $xQx .= "assetName, ";
-  $xQx .= "quantity ";
-  $xQx .= "FROM assetstwo ";
-  $xQx .= "WHERE quantity !='0' AND isDeleted = '0'";
+  $xQx = "SELECT groupid,";
+  $xQx .= "groupName ";
+
+  $xQx .= "FROM groups ";
+  $xQx .= "WHERE  isDeleted = '0'";
   $query=mysqli_query($conn,$xQx);
 
   return  $query;

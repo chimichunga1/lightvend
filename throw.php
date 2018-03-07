@@ -19,8 +19,8 @@ if(isset($_POST["generate_invoice"]))
     
 
     $get_value = $_POST["generate_invoice"];
-echo $get_value;
-echo "tie";
+$get_value;
+
 $xQx_update = "UPDATE invoices SET Status = '1' WHERE invoiceId = '$get_value'";
  $query_update=mysqli_query($conn,$xQx_update);
 

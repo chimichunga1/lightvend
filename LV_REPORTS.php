@@ -1,6 +1,6 @@
 <div class="wrapper" style="background-color:transparent;">
 
-<div><p>MANAGE CLIENTS</p></div>
+<div><p>MANAGE REPORTS</p></div>
 
 <style>
   .switch {
@@ -82,11 +82,14 @@ input::-webkit-inner-spin-button {
 
 <script>
 $(document).ready(function(){
-    $('#ManageClients').DataTable({
+    $('#ManageReport').DataTable({
       "aoColumns": [
           null,
           null,
           null, 
+          null,
+          null,
+          null,
           { "orderSequence": [ "" ] }
         
       ]
@@ -98,7 +101,9 @@ $(document).ready(function(){
     });
 
 
+
 });
+
 
 </script>
 
@@ -115,7 +120,7 @@ $(document).ready(function(){
  -->
 
 <br>
-<br>
+
 
 <?php
 tbl_reports();

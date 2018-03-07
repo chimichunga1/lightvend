@@ -119,10 +119,10 @@ $pdf->Cell(189 ,10,'',0,1);//end of line
 //invoice contents
 $pdf->SetFont('Arial','B',12);
 
-$pdf->Cell(105 ,5,'Description',1,0);
-$pdf->Cell(25 ,5,'Quantity',1,0);
-$pdf->Cell(25 ,5,'Amount',1,0);
-$pdf->Cell(34 ,5,'Total',1,1);//end of line
+$pdf->Cell(100 ,5,'Product',1,0);
+
+$pdf->Cell(55 ,5,'Serial #',1,0);
+$pdf->Cell(34 ,5,'Amount',1,1);//end of line
 
 $pdf->SetFont('Arial','',12);
 
@@ -137,10 +137,10 @@ $sp="";
 
 {
 $sp[].=$row["sellPrice"]*$row["quantity"];
-$pdf->Cell(105 ,5,$row["assetName"],1,0);
-$pdf->Cell(25 ,5,$row["quantity"],1,0);
-$pdf->Cell(25 ,5,number_format($row["sellPrice"]),1,0);
-$pdf->Cell(34 ,5,number_format($row["sellPrice"]*$row["quantity"]),1,1,'R');//end of line
+$pdf->Cell(100 ,5,$row["assetName"],1,0);
+$pdf->Cell(55 ,5,$row["assetsId"],1,0);
+
+$pdf->Cell(34 ,5,number_format($sp[].=$row["sellPrice"]),1,1,'R');//end of line
 
 }
 

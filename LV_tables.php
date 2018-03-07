@@ -615,24 +615,70 @@ function tbl_groups()
 function tbl_reports()
 {
   ?>
+
+  <form method="POST" action="admin.php?x=REPORTS">
+ <div class="row">
+
+ <div class="col-md-6">
+
+ <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Date Start</button>
+                  </div>
+                  <input type='date' class='form-control'  name="SDT">
+  </div>
+  </div>
+
+  <div class="col-md-6">
+ <div class='input-group margin'>
+                  <div class='input-group-btn'>
+                  <button type='button' class='btn btn-block btn-primary btn-flat size-125px'>Date End</button>
+                  </div>
+                  <input type='date' class='form-control'  name="EDT">
+  </div>
+  </div>
+
+
+  <div class="row">
+
+<div class="col-md-12">
+<button type='submit' class='btn btn-block btn-success btn-flat ' name="SEAR">Search</button>
+</div>
+</div>
+            </form>      
+                  
+ 
+  <br>
 <!--   <table id="ManageSupplier" class="display" cellspacing="0" width="100%"> -->
-  <table id="ManageStocks" class="ui celled table" cellspacing="0" width="100%">
+  <table id="ManageReport" class="ui celled table" cellspacing="0" width="100%">
           <thead>
               <tr>
                   <th>Report ID</th>
                   <th>Client Name</th>
-                  <th>Business Type</th>
+               
                   <th>Total Amount</th>
                   <th>Amount Paid</th>
                   <th>Handled By</th>
+                  <th>Date Paid</th>
                   <th>Actions</th>
 
               </tr>
           </thead>
           <tbody>
             <?php  
+
+
 global $conn;
+
+if(isset($_POST['SEAR']))
+{
+  $xQx_select = "SELECT * FROM  reportsclientorder WHERE date_paid between '".$_POST['SDT']."' AND '".$_POST['EDT']."' ";
+}
+else
+{
   $xQx_select = "SELECT * FROM  reportsclientorder";
+}
+ 
   $query_select=mysqli_query($conn,$xQx_select);         
 
 
@@ -649,10 +695,11 @@ global $conn;
               <tr>
               <td>$row[0]</td>
               <td>$row[4]</td>
-              <td>$row[6]</td>
+          
               <td>$row[7]</td>              
               <td>$row[8]</td>
               <td>$row[9]</td>
+              <td>$row[10]</td>
 <td>
                           
               <div class='row'>
@@ -816,7 +863,7 @@ global $conn;
 function tbl_invoice()
 {
 
-  include("connect.config.php");
+ 
   ?>
 <!--   <table id="ManageClients" class="display" cellspacing="0" width="100%"> -->
   <table id="ManageClients" class="ui celled table" cellspacing="0" width="100%">
@@ -824,7 +871,6 @@ function tbl_invoice()
               <tr>
                   <th>Invoice No.</th>
                   <th>Client</th>
-                  <th>Business Type</th>
                   <th>Date</th>
                   <th>Due Date</th>            
                    <th>Actions </th>     
@@ -834,6 +880,7 @@ function tbl_invoice()
             <?php  
 
             $zero = "0";
+            global $conn;
   $xQx = "SELECT * FROM invoices WHERE Status ='0'  AND isDeleted = '0' ";
   $query_invoice=mysqli_query($conn,$xQx);
 
@@ -853,7 +900,7 @@ function tbl_invoice()
               <tr>
               <td>$row[0]</td>
               <td>$row[3]</td>
-              <td>$row[6]</td>
+       
               <td>$row[11]</td>
               <td>$row[12]</td>
 
@@ -1075,17 +1122,12 @@ frm_add_itemsinvo();
         </div>
         <div class='modal-body'>
               <div class='row'>
-<div class='col-md-2'>
+<div class='col-md-6'>
 Item Name
 
 
 </div>         
 
-<div class='col-md-2'>
-Quantity
-
-
-</div>  
 
 <div class='col-md-2'>
 Unit Price
@@ -1102,10 +1144,6 @@ Sell Price
 
 
 
-<div class='col-md-2'>
-Handled By
-
-</div>  
 
 <div class='col-md-2'>
 Date
@@ -1137,7 +1175,7 @@ $invoice_id  = $row[0];
 
 ?>
                 <div class='row'>
-<div class='col-md-2'>
+<div class='col-md-6'>
 
 <?php 
 echo $row[2];
@@ -1146,17 +1184,6 @@ echo $row[2];
 
 </div>         
 
-<div class='col-md-2'>
-
-
-<?php 
-echo $row[3];
-
-?>
-
-
-
-</div>  
 
 <div class='col-md-2'>
 
@@ -1183,13 +1210,7 @@ echo $row[5];
 
 
 
-<div class='col-md-2'>
-<?php 
-echo $row[7];
-
-?>
-
-</div>  
+ 
 
 <div class='col-md-2'>
 <?php 
@@ -1256,7 +1277,7 @@ function tbl_invoice_generated()
               <tr>
                   <th>Invoice No.</th>
                   <th>Client</th>
-                  <th>Business Type</th>
+            
                   <th>Date</th>
                   <th>Due Date</th>            
                    <th>Actions </th>     
@@ -1285,7 +1306,7 @@ function tbl_invoice_generated()
               <tr>
               <td>$row[0]</td>
               <td>$row[3]</td>
-              <td>$row[6]</td>
+    
               <td>$row[11]</td>
               <td>$row[12]</td>
 
@@ -1501,17 +1522,12 @@ frm_add_itemsinvo();
         </div>
         <div class='modal-body'>
               <div class='row'>
-<div class='col-md-2'>
+<div class='col-md-6'>
 Item Name
 
 
 </div>         
 
-<div class='col-md-2'>
-Quantity
-
-
-</div>  
 
 <div class='col-md-2'>
 Unit Price
@@ -1528,10 +1544,7 @@ Sell Price
 
 
 
-<div class='col-md-2'>
-Handled By
-
-</div>  
+  
 
 <div class='col-md-2'>
 Date
@@ -1563,7 +1576,7 @@ $invoice_id  = $row[0];
 
 ?>
                 <div class='row'>
-<div class='col-md-2'>
+<div class='col-md-6'>
 
 <?php 
 echo $row[2];
@@ -1572,17 +1585,7 @@ echo $row[2];
 
 </div>         
 
-<div class='col-md-2'>
 
-
-<?php 
-echo $row[3];
-
-?>
-
-
-
-</div>  
 
 <div class='col-md-2'>
 
@@ -1609,13 +1612,7 @@ echo $row[5];
 
 
 
-<div class='col-md-2'>
-<?php 
-echo $row[7];
 
-?>
-
-</div>  
 
 <div class='col-md-2'>
 <?php 

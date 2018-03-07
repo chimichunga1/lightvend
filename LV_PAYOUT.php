@@ -176,7 +176,7 @@ if(!isset($_POST["invoice_paid"]))
 
 ?>
     <script>   
-    window.location.href="admin.php?x=SALES%20INVOICES";
+    window.location.href="admin.php?x=PAID%20INVOICE";
     </script>
 <?php
 }
@@ -243,7 +243,7 @@ $cName = $_SESSION["cName"];
         <div class="col-xs-12">
           <h2 class="page-header">
             <i class="fa fa-globe"></i> Lightvend Inc.
-            <small class="pull-right">Date: 2/10/2014</small>
+            <small class="pull-right">&nbsp;</small>
           </h2>
         </div>
         <!-- /.col -->
@@ -307,7 +307,7 @@ $cName = $_SESSION["cName"];
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
+  
               <th>Product</th>
               <th>Serial #</th>
               <th>Subtotal</th>
@@ -329,10 +329,10 @@ $cName = $_SESSION["cName"];
             ?>
             <tr>
 
-              <td><?php echo $row["quantity"];?></td>
+            
               <td><?php echo $row["assetName"]; ?></td>
               <td><?php echo $row["assetsId"]; ?></td>
-              <td><?php echo $row["sellPrice"]; ?></td>
+              <td><?php echo number_format($row["sellPrice"]); ?></td>
             </tr>
 
           <?php 
@@ -366,15 +366,11 @@ Terms and Conditions Here.
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
+          <p class="lead"><?php echo $row["due_date"]; ?></p>
 
           <div class="table-responsive">
             <table class="table">
-              <tr>
-                <th style="width:50%">Subtotal:</th>
-
-
-              </tr>
+              
 
 
 
@@ -391,16 +387,16 @@ $sp="";
                       {  
                         ?>
  <tr>                       
-<th style="width:50%"></th>
-<th><?php echo $row["sellPrice"] * $row["quantity"]; 
+ <th style="width:50%">Subtotal:</th>
+<td><?php $row["sellPrice"] ; 
 
 
-$sp[].=$row["sellPrice"]* $row["quantity"];
+$sp[].=$row["sellPrice"];
 
+$spri=array_sum($sp);
+echo number_format($spri);
 
-
-
-?></th>
+?></td>
 </tr>
 <?php
 }
@@ -422,31 +418,32 @@ else
   $tax_value_string = "Non Vatable";
 
 }
+
+$tot=array_sum($sp);
 ?>
 
 
               <tr>
 
 
-                <th>Tax: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <?php echo $tax_value_string; ?></th>    
+                <th style="width:50%" >Tax: &nbsp;
+                  <?php echo $tax_value_string; ?></th>   
+                  <td><?php echo number_format($tot* $tax_value); ?></td> 
   </tr>
   <tr>       
                 <th>Total:</th>
 
 
 
-                <td><?php
+                <th><?php
 
                  
-               /* $tot=array_sum($sp);*/
+             
 
-
-      /*            echo   $totx =  $tot + ($tot* $tax_value);*/
-
-                ?></td>
+                
+                  $totx =  $tot + ($tot* $tax_value);
+                echo number_format($totx);
+                ?></th>
 
 
               </tr>
@@ -465,6 +462,7 @@ else
       <div class="row no-print">
         <div class="col-xs-12">
 <!--           <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a> -->
+    
           <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#payout"><i class="fa fa-credit-card" ></i> Proceed Payment
           </button>
 <!--           <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
@@ -490,14 +488,14 @@ else
         <div class='modal-body'>
 
 
-          <form  role='form' action='payout.php' method='post' id='partdelpost' enctype='multipart/form-data'>
+          <form  role='form' action='payout.php' method='post'  enctype='multipart/form-data'>
 
                    <div class='input-group margin'>
                   <div class='input-group-btn'>
                   <button type='button' class='btn btn-block btn-primary btn-flat size-200px'><b>Total Amount</b></button>
                   </div>
                   <input type="hidden" name="total_amount" value='<?php echo $totx;?>'>
-                  <input type='text' class='form-control'     style='' value='<?php echo $totx;?>' disabled>
+                  <input type='text' class='form-control'     style='' value='<?php echo number_format($totx);?>' disabled>
                   </div>
       <br>
                    <div class='input-group margin'>
